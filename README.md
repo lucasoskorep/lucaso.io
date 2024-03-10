@@ -1,3 +1,6 @@
+# This is the readme for my personal site
+
+Check this thing out and let me know what you think
 # personal-website
 
 
