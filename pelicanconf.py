@@ -15,6 +15,10 @@ BIO = ('Software Engineer'
        '<br>'
        '<b>Devops is a Meaningful Term</b>')
 
+MENUITEMS = [
+    ("About",  "/")
+]
+
 # FONT_AWESOME_CSS='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css'
 # FONT_ACADEMICONS='true'
 # Feed generation is usually not desired when developing

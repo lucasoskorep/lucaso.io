@@ -1,4 +1,5 @@
 FROM docker.io/library/python:3.11 as builder
+LABEL authors="lucasoskorep"
 
 WORKDIR /app
 
@@ -10,9 +11,7 @@ RUN poetry install
 
 COPY . .
 
-RUN ls
 RUN poetry run make publish
-
 
 FROM docker.io/library/nginx:latest as release
 LABEL authors="lucasoskorep"
