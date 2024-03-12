@@ -1,107 +1,26 @@
-Title: Blog 1
-Date: 2010-12-03 10:20
+Title: Adding Yubikey as Passwordless Sudo Arch Linux
+Date: 2024-12-03 18:18
 Category: blog
 Type: article
 Tags: arch, archlinux, linux, test
 
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favorite mechanical keyboard
-Following is a review of my favoritemechanical keyboard
-
-
+1. Install required software for your yubikey 
 ```bash
-echo "hello world!"
+yay -S yubikey-manager yubikeymanager-qt pam-u2f
 ```
+2. create a u2f mappings file 
+```bash
+pamu2fcfg | sudo tee -a /etc/u2f_mappings
+```
+3. Create common-u2f file in /etc/pam.d
+```bash
+echo >> /etc/u2f_mappings
+cd /etc/pam.d
+
+echo 'auth sufficient pam_u2f.so authfile=/etc/u2f_mappings cue' > common-u2f
+```
+4. Add the following line to your /etc/pam.d/system-auth file directly in between the following lines
+```bash
+auth       include                     common-u2f
+```
+5. profit ????
