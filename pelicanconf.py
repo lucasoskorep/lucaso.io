@@ -1,6 +1,6 @@
 AUTHOR = 'Lucas Oskorep'
-SITENAME = 'Lucas Duck'
-SITEURL = ""
+SITENAME = 'Lucas Oskorep'
+# SITEURL = "https://lucasoskorep.com"
 
 PATH = "content"
 
@@ -11,8 +11,9 @@ DEFAULT_LANG = 'en'
 # Theme settings
 THEME = './pelican-hyde'
 DISPLAY_PAGES_ON_MENU = 'true'
-BIO = 'Software Engineer'
-# MENUITEMS = [("TEST", "/model-y.html")]
+BIO = ('Software Engineer'
+       '<br>'
+       '<b>Devops is a Meaningful Term</b>')
 
 # FONT_AWESOME_CSS='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css'
 # FONT_ACADEMICONS='true'
@@ -33,11 +34,16 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-    ("You can add links in your config file", "#"),
-    ("Another social link", "#"),
+    ("github", "https://github.com/lucasoskorep"),
+    ("gitlab", "https://gitlab.com/lucasoskorep"),
+    ("lastfm", "https://gitlab.com/lucasoskorep"),
+    ("linkedin", "https://www.linkedin.com/in/lucas-oskorep/"),
 )
 
 DEFAULT_PAGINATION = False
+
+# DIRECT_TEMPLATES = ['index', 'projects']
+# PAGINATED_TEMPLATES = ['projects']
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
