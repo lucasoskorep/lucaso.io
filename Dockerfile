@@ -11,7 +11,7 @@ RUN poetry install
 COPY . .
 
 RUN ls
-RUN poetry run pelican content
+RUN poetry run make publish
 
 
 FROM docker.io/library/nginx:latest as release

@@ -8,7 +8,7 @@
 .bzr/
 .bzrignore
 .hg/
-.hgignore
+.hgignoreW
 .svn/
 # Common backup files
 *.swp

@@ -73,6 +73,8 @@ publish:
 containers:
 	$(PODMAN) build --target release --platform linux/arm64,linux/amd64 --manifest chaos2theory/personal-site:test .
 	$(PODMAN) manifest push --all chaos2theory/personal-site:test
+  	$(PODMAN) manifest rm chaos2theory/personal-site:test
+
 
 .PHONY: run-container
 run-container:
