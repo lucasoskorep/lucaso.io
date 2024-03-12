@@ -1,7 +1,7 @@
 PY?=
 PELICAN?=pelican
 PELICANOPTS=
-
+PODMAN?=podman
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
 OUTPUTDIR=$(BASEDIR)/output
@@ -69,4 +69,14 @@ publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 
 
-.PHONY: html help clean regenerate serve serve-global devserver devserver-global publish 
+.PHONY: containers
+containers:
+	$(PODMAN) build --target release --platform linux/arm64,linux/amd64 --manifest chaos2theory/personal-site:test .
+	$(PODMAN) manifest push --all chaos2theory/personal-site:test
+
+.PHONY: run-container
+run-container:
+	$(PODMAN) build --target release --platform linux/amd64 -t chaos2theory/personal-site:latest . --load
+	$(PODMAN) run -p 8000:80 chaos2theory/personal-site:latest
+
+.PHONY: html help clean regenerate serve serve-global devserver devserver-global publish

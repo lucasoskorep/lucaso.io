@@ -1,5 +1,12 @@
+Title: About
+Date: 2023-12-03 10:20
+Category: about
+Type: Page
+
+
+```python
 AUTHOR = 'Lucas Oskorep'
-SITENAME = 'Lucas Duck'
+SITENAME = 'Lucas Oskorep'
 SITEURL = ""
 
 PATH = "content"
@@ -41,3 +48,4 @@ DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
+```

@@ -1,7 +1,6 @@
-Title: Project X
+Title: Model Y
 Date: 2010-12-03 10:20
-Category: Projects
-Authors: Lucas Oskorep
+Category: models
 
 Following is a review of my favorite mechanical keyboard
 Following is a review of my favorite mechanical keyboard
@@ -99,3 +98,8 @@ Following is a review of my favorite mechanical keyboard
 Following is a review of my favorite mechanical keyboard
 Following is a review of my favorite mechanical keyboard
 Following is a review of my favoritemechanical keyboard
+
+
+```bash
+echo "hello world!"
+```
