@@ -1,6 +1,7 @@
 Title: Adding Yubikey as Passwordless Sudo Arch Linux
 Date: 2024-12-03 18:18
 Category: blog
+Summary: Adding Yubikey as Passwordless sudo on a stock arch linux installation
 Type: article
 Tags: arch, archlinux, linux, test
 
