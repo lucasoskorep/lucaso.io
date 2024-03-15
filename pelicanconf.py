@@ -40,7 +40,7 @@ LINKS = (
 SOCIAL = (
     ("github", "https://github.com/lucasoskorep"),
     ("gitlab", "https://gitlab.com/lucasoskorep"),
-    ("lastfm", "https://gitlab.com/lucasoskorep"),
+    ("lastfm", "https://www.last.fm/user/chaos2theory"),
     ("linkedin", "https://www.linkedin.com/in/lucas-oskorep/"),
 )
 
