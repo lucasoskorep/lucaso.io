@@ -1,5 +1,6 @@
 AUTHOR = 'Lucas Oskorep'
 SITENAME = 'Lucas Oskorep'
+
 # SITEURL = "https://lucasoskorep.com"
 
 PATH = "content"
