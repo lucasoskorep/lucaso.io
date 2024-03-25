@@ -12,6 +12,8 @@ docker-build:
   # Default branch is also tagged with `latest`
   script:
     - ls
+    - docker context create builder
+    - docker buildx create builder --use
     - docker buildx build --target release --platform linux/arm64,linux/amd64 -t chaos2theory/personal-site:latest .
     # - docker push "$DOCKER_IMAGE_NAME"
     # - |
