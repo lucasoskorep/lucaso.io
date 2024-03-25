@@ -69,12 +69,12 @@ publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 
 
-.PHONY: build-containers
+.PHONY: build-container
 build-container:
 	$(PODMAN) build --target release --platform linux/arm64,linux/amd64 --manifest chaos2theory/personal-site:latest .
 
 
-.PHONY: push-containers
+.PHONY: push-container
 push-container:
 	$(PODMAN) manifest push --all chaos2theory/personal-site:latest
   	$(PODMAN) manifest rm chaos2theory/personal-site:latest
@@ -82,7 +82,8 @@ push-container:
 
 .PHONY: run-container
 run-container:
-	$(PODMAN) build --target release --platform linux/arm64,linux/amd64 --tag chaos2theory/personal-site:latest . --load
-	$(PODMAN) run -p 8000:80 localhost/chaos2theory/personal-site:latest
+	$(PODMAN) build --target release --tag chaos2theory/personal-site:latest . --load
+	$(PODMAN) run --rm -p 8000:80 localhost/chaos2theory/personal-site:latest
+	$(PODMAN) image rm localhost/chaos2theory/personal-site:latest
 
 .PHONY: html help clean regenerate serve serve-global devserver devserver-global publish

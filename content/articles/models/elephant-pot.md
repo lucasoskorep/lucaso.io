@@ -6,7 +6,6 @@ Tags: pot, water, container, planter, cute
 License: Creative Commons 4.0
 Printables: https://www.printables.com/model/1246-elephant-plant-pot
 
-![plant-pot]({attach}/images/elephant-plant-pot.jpg)
 
 This model is a remix of Pezmc's relephant plant pot.
 
