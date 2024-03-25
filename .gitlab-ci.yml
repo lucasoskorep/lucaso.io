@@ -2,8 +2,8 @@
 docker-build:
   image: docker:cli
   stage: build
-  services:
-    - docker:dind
+  # services:
+  #   - docker:dind
   variables:
     DOCKER_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   # before_script:
