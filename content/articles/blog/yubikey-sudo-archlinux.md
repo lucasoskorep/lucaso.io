@@ -24,4 +24,5 @@ echo 'auth sufficient pam_u2f.so authfile=/etc/u2f_mappings cue' > common-u2f
 ```bash
 auth       include                     common-u2f
 ```
-5. profit ????
+
+5. Test it out and make sure that it works.
