@@ -47,5 +47,4 @@ deploy:
     name: alpine/helm:3.2.1
     entrypoint: ['']
   script:
-    - helm upgrade ${APP_NAME} ./charts --install \
-    - --values=./charts/values.yaml --namespace ${APP_NAME}
+    - helm upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace website --set-value "chaosdev.image.tag=latest"
