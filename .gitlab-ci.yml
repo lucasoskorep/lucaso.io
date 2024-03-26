@@ -36,7 +36,9 @@ deploy:
     - kubectl config get-contexts
     - kubectl config use-context path/to/agent/project:agent-name
     - kubectl get pods
-
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+      when: always
 #deploy:
 #  variables:
 #    APP_NAME: chaosdev
@@ -49,6 +51,3 @@ deploy:
 #  script:
 #    - ls
 #    - helm upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace ${APP_NAME}
-#  rules:
-#    - if: $CI_COMMIT_BRANCH == 'main'
-#      when: always
