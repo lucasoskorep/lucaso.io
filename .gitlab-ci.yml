@@ -47,4 +47,6 @@ deploy:
     name: alpine/helm:3.2.1
     entrypoint: ['']
   script:
+    - kubectl config get-contexts
+    - kubectl config use-context lucasoskorep/personal-website:rpi-cluster
     - helm upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace website --set "chaosdev.image.tag=latest"
