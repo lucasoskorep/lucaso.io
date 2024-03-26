@@ -1,0 +1,13 @@
+
+.body {
+    background-color: #202020 !important;
+}
+
+.sidebar {
+    text-align: left !important;
+}
+
+.sidebar-canvas {
+    height: 100%;
+    width: 100%;
+}

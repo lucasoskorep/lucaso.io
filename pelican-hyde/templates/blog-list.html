@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="posts">
+    <h1 class="post-title">
+        <a>Posts</a>
+    </h1>
+    {% for article in articles %}
+    {% if article.category == 'blog' %}
+    <div class="post">
+        <div class="">
+        <h3 class="post-title" href="{{ SITEURL }}/{{ article.url }}">
+            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+        </h3>
+        <span class="post-date">{{ article.locale_date }}</span>
+        {% if article.tags %}
+<!--        <span class="post-tags">-->
+<!--						Tags:-->
+<!--						<ul>-->
+<!--							{% for tag in article.tags %}-->
+<!--								<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>-->
+<!--							{% endfor %}-->
+<!--						</ul>-->
+<!--					</span>{% endif %}-->
+<!--        <p>-->
+<!--            {{ article.summary }}-->
+<!--        </p>-->
+<!--        <a class="read-more" href="{{ article.url }}">Continue reading »</a>-->
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
