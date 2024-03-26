@@ -32,10 +32,13 @@ deploy:
   variables:
     APP_NAME: chaosdev
   stage: deploy
-  image: alpine/helm:3.2.1
+  image:
+    name: alpine/helm:3.2.1
+    entrypoint:
+      - "/bin/sh"
+
   script:
-    - ls=
-    - helm upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace ${APP_NAME}
+    - upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace ${APP_NAME}
   rules:
     - if: $CI_COMMIT_BRANCH == 'main'
       when: always
