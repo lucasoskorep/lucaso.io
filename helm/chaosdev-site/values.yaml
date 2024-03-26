@@ -8,7 +8,7 @@ image:
   repository: docker.io/chaos2theory/personal-site
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "unknown"
 
 imagePullSecrets: []
 nameOverride: ""
