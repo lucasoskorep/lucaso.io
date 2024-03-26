@@ -35,7 +35,7 @@ deploy:
   image:
     name: alpine/helm:3.2.1
     entrypoint:
-      - "/bin/sh"
+      - ""
 
   script:
     - upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace ${APP_NAME}
