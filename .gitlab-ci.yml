@@ -29,17 +29,26 @@ stages:
 #        - Dockerfile
 
 deploy:
-  variables:
-    APP_NAME: chaosdev
-  stage: deploy
   image:
-    name: alpine/helm:3.2.1
-    entrypoint:
-      - ""
-
+    name: bitnami/kubectl:latest
+    entrypoint: ['']
   script:
-    - ls
-    - helm upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace ${APP_NAME}
-  rules:
-    - if: $CI_COMMIT_BRANCH == 'main'
-      when: always
+    - kubectl config get-contexts
+    - kubectl config use-context path/to/agent/project:agent-name
+    - kubectl get pods
+
+#deploy:
+#  variables:
+#    APP_NAME: chaosdev
+#  stage: deploy
+#  image:
+#    name: alpine/helm:3.2.1
+#    entrypoint:
+#      - ""
+#
+#  script:
+#    - ls
+#    - helm upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace ${APP_NAME}
+#  rules:
+#    - if: $CI_COMMIT_BRANCH == 'main'
+#      when: always
