@@ -43,10 +43,11 @@ deploy:
   variables:
     APP_NAME: chaosdev
   stage: deploy
-  image:
-    name: alpine/helm:3.2.1
-    entrypoint: ['']
-  script:
+  before_script:
     - kubectl config get-contexts
     - kubectl config use-context lucasoskorep/personal-website:rpi-cluster
+  image:
+    name: dtzar/helm-kubectl:latest
+    entrypoint: ['']
+  script:
     - helm upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace website --set "chaosdev.image.tag=latest"
