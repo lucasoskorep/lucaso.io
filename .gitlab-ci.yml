@@ -1,5 +1,8 @@
+stages:
+  - build
+  - deploy
 
-docker-build:
+build:
   image: docker:cli
   stage: build
   # services:
@@ -28,3 +31,14 @@ docker-build:
     - if: $CI_COMMIT_BRANCH
       exists:
         - Dockerfile
+
+deploy:
+  variables:
+    APP_NAME: chaosdev
+  stage: deploy
+  image: alpine/helm:3.2.1
+  script:
+    - helm upgrade ${APP_NAME} ./charts --install --values=./charts/values.yaml --namespace ${APP_NAME}
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+      when: always
