@@ -45,7 +45,7 @@ deploy:
   stage: deploy
   before_script:
     - kubectl config get-contexts
-    - kubectl config use-context lucasoskorep/personal-website:rpi-cluster
+    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
   image:
     name: dtzar/helm-kubectl:latest
     entrypoint: ['']
