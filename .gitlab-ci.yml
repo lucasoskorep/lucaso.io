@@ -1,6 +1,6 @@
 stages:
   - build
-  - deploy
+#  - deploy
 
 build:
   image: docker:cli
@@ -12,10 +12,12 @@ build:
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   # Default branch is also tagged with `latest`
   script:
-#    - docker context create builder
-#    - docker buildx create builder --use
+    - docker context create builder
+    - docker buildx create builder --use
     - docker buildx ls
-    - docker buildx build --target release --platform linux/arm64,linux/amd64 -t chaos2theory/personal-site:latest .
+#    - docker buildx build --target release --platform linux/arm64,linux/amd64 -t chaos2theory/personal-site:latest .
+    - docker context remove builder
+    - docker buildx ls
     # - docker push "$DOCKER_IMAGE_NAME"
     # - |
     #   if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
@@ -40,15 +42,15 @@ build:
 #  rules:
 #    - if: $CI_COMMIT_BRANCH == 'main'
 #      when: always
-deploy:
-  variables:
-    APP_NAME: chaosdev
-  stage: deploy
-  before_script:
-    - kubectl config get-contexts
-    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
-  image:
-    name: dtzar/helm-kubectl:latest
-    entrypoint: ['']
-  script:
-    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
+#deploy:
+#  variables:
+#    APP_NAME: chaosdev
+#  stage: deploy
+#  before_script:
+#    - kubectl config get-contexts
+#    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
+#  image:
+#    name: dtzar/helm-kubectl:latest
+#    entrypoint: ['']
+#  script:
+#    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
