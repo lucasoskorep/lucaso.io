@@ -1,6 +1,6 @@
 stages:
   - build
-#  - deploy
+  - deploy
 
 build:
   image: docker:cli
@@ -8,8 +8,8 @@ build:
   variables:
     DOCKER_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     BUILDER_NAME: personal-website
-#  services:
-#    - docker:stable-dind
+  #  services:
+  #    - docker:stable-dind
   before_script:
     - docker context create builder
     - docker buildx create builder --use --name "$BUILDER_NAME"
@@ -42,7 +42,7 @@ deploy:
     - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
   image:
     name: dtzar/helm-kubectl:latest
-    entrypoint: ['']
+    entrypoint: [ '' ]
   script:
     - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
   when: manual
