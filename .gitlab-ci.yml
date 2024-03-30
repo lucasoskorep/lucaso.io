@@ -18,8 +18,8 @@ build:
     - docker buildx create builder --use
     - docker buildx ls
 #    - docker buildx build --target release --platform linux/arm64,linux/amd64 -t chaos2theory/personal-site:latest .
-    - docker context remove builder
-    - docker buildx ls
+#    - docker context remove builder
+#    - docker buildx ls
     # - docker push "$DOCKER_IMAGE_NAME"
     # - |
     #   if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
