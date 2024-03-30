@@ -7,15 +7,19 @@ build:
   stage: build
   variables:
     DOCKER_IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-  services:
-    - docker:stable-dind
-  # before_script:
-    # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#  services:
+#    - docker:stable-dind
+  before_script:
+    - docker context create builder
+    - docker buildx create builder --use --name personal-website-builder
+  after_script:
+    - docker buildx remove builder personal-website-builder
+    - docker context remove builder
+  # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   # Default branch is also tagged with `latest`
   script:
-    - docker context create builder
-    - docker buildx create builder --use
+
     - docker buildx ls
     - docker buildx build --target release --platform linux/amd64 -t chaos2theory/personal-site:latest .
 #    - docker context remove builder
