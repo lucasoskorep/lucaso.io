@@ -13,8 +13,8 @@ build:
     - docker context create builder
     - docker buildx create builder --use --name personal-website-builder
   after_script:
-    - docker buildx remove builder personal-website-builder
-    - docker context remove builder
+    - docker buildx rm personal-website-builder
+    - docker context rm builder
   # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   # Default branch is also tagged with `latest`
