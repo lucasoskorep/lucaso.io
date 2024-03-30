@@ -12,8 +12,8 @@ build:
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   # Default branch is also tagged with `latest`
   script:
-    - docker context create builder
-    - docker buildx create builder --use
+#    - docker context create builder
+#    - docker buildx create builder --use
     - docker buildx build --target release --platform linux/arm64,linux/amd64 -t chaos2theory/personal-site:latest .
     # - docker push "$DOCKER_IMAGE_NAME"
     # - |
