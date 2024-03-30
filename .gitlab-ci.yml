@@ -18,46 +18,31 @@ build:
     - docker context rm builder
   # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
-  # Default branch is also tagged with `latest`
   script:
 
     - docker buildx ls
-    - docker buildx build --target release --platform linux/amd64 -t chaos2theory/personal-site:latest .
-#    - docker context remove builder
-#    - docker buildx ls
+    - docker buildx build --target release --platform linux/amd64,linux/arm64 -t chaos2theory/personal-site:latest .
     # - docker push "$DOCKER_IMAGE_NAME"
     # - |
     #   if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
     #     docker tag "$DOCKER_IMAGE_NAME" "$CI_REGISTRY_IMAGE:latest"
     #     docker push "$CI_REGISTRY_IMAGE:latest"
     #   fi
-  # Run this job in a branch where a Dockerfile exists
   rules:
     - if: $CI_COMMIT_BRANCH
       exists:
         - Dockerfile
 
-#deploy:
-#  stage: deploy
-#  image:
-#    name: bitnami/kubectl:latest
-#    entrypoint: ['']
-#  script:
-#    - kubectl config get-contexts
-#    - kubectl config use-context lucasoskorep/personal-website:rpi-cluster
-#    - kubectl get pods -n website
-#  rules:
-#    - if: $CI_COMMIT_BRANCH == 'main'
-#      when: always
-#deploy:
-#  variables:
-#    APP_NAME: chaosdev
-#  stage: deploy
-#  before_script:
-#    - kubectl config get-contexts
-#    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
-#  image:
-#    name: dtzar/helm-kubectl:latest
-#    entrypoint: ['']
-#  script:
-#    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
+deploy:
+  variables:
+    APP_NAME: chaosdev
+  stage: deploy
+  before_script:
+    - kubectl config get-contexts
+    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
+  image:
+    name: dtzar/helm-kubectl:latest
+    entrypoint: ['']
+  script:
+    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
+  when: manual
