@@ -1,5 +1,5 @@
 Title: Honeywell Fan Holder
-Date: 
+Date: 2022-10-2
 Category: models
 Image: 
 Tags: mobile, dev, holder

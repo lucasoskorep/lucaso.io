@@ -1,5 +1,5 @@
 Title: Nvidia 30XX 12 pin Cable Comb
-Date: 2022-09-05
+Date: 2022-05-03
 Category: models
 Image: 
 Tags: 

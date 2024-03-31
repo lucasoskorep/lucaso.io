@@ -1,5 +1,6 @@
 PY?=
 PELICAN?=pelican
+PYTHON?=python
 PELICANOPTS=
 PODMAN?=podman
 BASEDIR=$(CURDIR)
@@ -85,5 +86,9 @@ run-container:
 	$(PODMAN) build --target release --tag chaos2theory/personal-site:latest . --load
 	$(PODMAN) run --rm -p 8000:80 localhost/chaos2theory/personal-site:latest
 	$(PODMAN) image rm localhost/chaos2theory/personal-site:latest
+
+.PHONY: update-projects
+update-projects:
+	$(PYTHON) ./project-updater.py
 
 .PHONY: html help clean regenerate serve serve-global devserver devserver-global publish

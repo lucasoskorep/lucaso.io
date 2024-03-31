@@ -3,6 +3,7 @@ Date: 2010-12-01
 Category: projects
 ProjectStatus: active
 Authors: Lucas Oskorep
+Status: hidden
 
 This page details my at home raspberry pi cluster project.  This project is used right now to host this website! 
 
