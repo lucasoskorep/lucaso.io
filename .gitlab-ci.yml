@@ -1,6 +1,7 @@
 stages:
-  - build
+  - build-and-upload
   - deploy
+  - publish-container
 
 build:
   image: docker:cli
@@ -19,7 +20,6 @@ build:
   # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   script:
-
     - docker buildx ls
     - docker buildx build --target release --platform linux/amd64,linux/arm64 -t chaos2theory/personal-site:latest .
     # - docker push "$DOCKER_IMAGE_NAME"
@@ -45,4 +45,4 @@ deploy:
     entrypoint: [ '' ]
   script:
     - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
-  when: manual
+#  when: manual
