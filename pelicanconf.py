@@ -1,7 +1,6 @@
 AUTHOR = 'Lucas Oskorep'
 SITENAME = 'Lucas Oskorep'
 
-# SITEURL = "https://lucasoskorep.com"
 
 PATH = "content"
 
@@ -14,6 +13,7 @@ THEME = './pelican-hyde'
 DISPLAY_PAGES_ON_MENU = 'true'
 BIO = ('Software Engineer'
        '<br>'
+       'Daily Affirmation:'
        '<b>Devops is a Meaningful Term</b>')
 
 MENUITEMS = [
@@ -41,6 +41,7 @@ LINKS = (
 SOCIAL = (
     ("github", "https://github.com/lucasoskorep"),
     ("gitlab", "https://gitlab.com/lucasoskorep"),
+    ("gitea", "https://gitea.chaosdev.gay/lucasoskorep"),
     ("lastfm", "https://www.last.fm/user/chaos2theory"),
     ("linkedin", "https://www.linkedin.com/in/lucas-oskorep/"),
 )

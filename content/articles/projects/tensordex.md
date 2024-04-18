@@ -2,7 +2,10 @@ Title: Tensordex
 Date: 2010-12-01 
 Category: projects
 ProjectStatus: active
-Status: hidden
 Authors: Lucas Oskorep
+Gitlab: https://gitlab.com/lucasoskorep/tensordex
+UseReadme: true
 
-Following is a review of my favorite mechanical keyboard
+[//]: # (anchor)
+
+Test readme file
