@@ -39,10 +39,10 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: LoadBalancer
-  port: 80
-  loadBalancerIP: 10.0.2.105
+#service:
+#  type: LoadBalancer
+#  port: 80
+#  loadBalancerIP: 10.0.2.105
 
 ingress:
   enabled: false
@@ -82,7 +82,7 @@ readinessProbe:
     port: http
 
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
   maxReplicas: 4
   targetCPUUtilizationPercentage: 80
