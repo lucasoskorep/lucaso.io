@@ -39,10 +39,9 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-#service:
-#  type: LoadBalancer
-#  port: 80
-#  loadBalancerIP: 10.0.2.105
+service:
+  type: ClusterIP
+  port: 80
 
 ingress:
   enabled: false
