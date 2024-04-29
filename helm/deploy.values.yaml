@@ -1,2 +1,4 @@
 imagePullSecrets:
   - name: regcred
+image:
+  repository: "gitea.chaosdev.gay/lucasoskorep/lucaso.io"
