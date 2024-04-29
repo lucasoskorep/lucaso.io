@@ -2,6 +2,7 @@ PY?=
 PELICAN?=pelican
 PYTHON?=python
 PELICANOPTS=
+TIME?=time
 PODMAN?=podman
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
@@ -74,17 +75,17 @@ publish:
 build-container:
 	$(PODMAN) build --target release --platform linux/arm64,linux/amd64 --manifest chaos2theory/personal-site:latest .
 
-
 .PHONY: push-container
 push-container:
-	$(PODMAN) manifest push --all chaos2theory/personal-site:latest
-  	$(PODMAN) manifest rm chaos2theory/personal-site:latest
+	$(PODMAN) manifest push --all chaos2theory/personal-site:latest gitea.chaosdev.gay/lucasoskorep/personal-site:latest1
+	$(PODMAN) manifest push --all chaos2theory/personal-site:latest harbor.chaosdev.gay/website/personal-site:latest1
+    $(PODMAN) manifest rm chaos2theory/personal-site:latest
 
 
 .PHONY: run-container
 run-container:
 	$(PODMAN) build --target release --tag chaos2theory/personal-site:latest . --load
-	$(PODMAN) run --rm -p 8000:80 localhost/chaos2theory/personal-site:latest
+	$(PODMAN) run --rm -p 8000:80 localhost/chaos2theory/personal-site:latest1
 	$(PODMAN) image rm localhost/chaos2theory/personal-site:latest
 
 .PHONY: update-projects
