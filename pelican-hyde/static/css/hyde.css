@@ -164,12 +164,13 @@ html {
   margin: 0 .2rem;
   border-radius: .25rem;
   text-transform: uppercase;
+
   font-size: .8rem;
   font-weight: bold;
 }
 a.sidebar-social-item:hover,
 a.sidebar-social-item:focus {
-  background: #0001;
+  background: #000a;
   text-decoration: none;
 }
 .sidebar-social-item.active {

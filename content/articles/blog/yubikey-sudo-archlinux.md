@@ -10,7 +10,7 @@ Tags: arch, archlinux, linux, yubikey
 ```bash
 yay -S yubikey-manager yubikeymanager-qt pam-u2f
 ```
-2\. create a u2f mappings file
+2\. Create an u2f mappings file
 ```bash
 pamu2fcfg | sudo tee -a /etc/u2f_mappings
 ```
@@ -23,9 +23,11 @@ echo 'auth sufficient pam_u2f.so authfile=/etc/u2f_mappings cue' > common-u2f
 ```
 
 4\. At this point you are about to make changes to your auth system.  
+
 **For safety, you need to have another TTY open with sudo permissions already granted, so you can roll back changes
 if necessary.**
-Do so by using control alt f3-7 or whatever you have assigned.  Login and type sudo su(if using sudo) to get an elevated prompt
+
+Do so by using control+alt+f3 (change the f key depending on your tty config).  Login and type sudo su to get an elevated prompt.
 
 
 5\. Add this line

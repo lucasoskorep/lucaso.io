@@ -13,8 +13,7 @@ THEME = './pelican-hyde'
 DISPLAY_PAGES_ON_MENU = 'true'
 BIO = ('Software Engineer'
        '<br>'
-       'Daily Affirmation:'
-       '<b>Devops is a Meaningful Term</b>')
+       '<i>Devops is a Meaningful Term</i>')
 
 MENUITEMS = [
     ("About",  "/")

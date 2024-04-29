@@ -39,4 +39,4 @@ deploy:
     entrypoint: [ '' ]
   script:
     - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=$CI_COMMIT_SHORT_SHA" -f ./helm/deploy.values.yaml
-  when: manual
+#  when: manual
