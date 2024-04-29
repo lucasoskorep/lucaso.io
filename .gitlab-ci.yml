@@ -21,8 +21,8 @@ build:
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   script:
     - docker buildx ls
-    - docker buildx build --target release --platform linux/amd64,linux/arm64 -t web/lucaso.io:latest .
-    - docker push web/lucaso.io:latest $GITEA_REGISTRY/website/lucaso.io:latest
+    - docker buildx build --target release --platform linux/amd64,linux/arm64 -t $GITEA_REGISTRY_URL/lucasoskorep/lucaso.io:latest . --push
+
   rules:
     - if: $CI_COMMIT_BRANCH
       exists:
