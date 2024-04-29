@@ -1,7 +1,7 @@
 stages:
   - build-and-upload
-  - deploy
-  - publish-container
+#  - deploy
+#  - publish-container
 
 build:
   image: docker:cli
@@ -14,35 +14,30 @@ build:
   before_script:
     - docker context create builder
     - docker buildx create builder --use --name "$BUILDER_NAME"
+    - docker login -u "$GITEA_REGISTRY_USER" -p "$GITEA_REGISTRY_PASSWORD" $GITEA_REGISTRY
   after_script:
     - docker buildx rm "$BUILDER_NAME"
     - docker context rm builder
-  # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   script:
     - docker buildx ls
-    - docker buildx build --target release --platform linux/amd64,linux/arm64 -t chaos2theory/personal-site:latest .
-    # - docker push "$DOCKER_IMAGE_NAME"
-    # - |
-    #   if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
-    #     docker tag "$DOCKER_IMAGE_NAME" "$CI_REGISTRY_IMAGE:latest"
-    #     docker push "$CI_REGISTRY_IMAGE:latest"
-    #   fi
+    - docker buildx build --target release --platform linux/amd64,linux/arm64 -t web/lucaso.io:latest .
+    - docker push web/lucaso.io:latest $GITEA_REGISTRY/website/lucaso.io:latest
   rules:
     - if: $CI_COMMIT_BRANCH
       exists:
         - Dockerfile
 
-deploy:
-  variables:
-    APP_NAME: chaosdev
-  stage: deploy
-  before_script:
-    - kubectl config get-contexts
-    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
-  image:
-    name: dtzar/helm-kubectl:latest
-    entrypoint: [ '' ]
-  script:
-    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
+#deploy:
+#  variables:
+#    APP_NAME: chaosdev
+#  stage: deploy
+#  before_script:
+#    - kubectl config get-contexts
+#    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
+#  image:
+#    name: dtzar/helm-kubectl:latest
+#    entrypoint: [ '' ]
+#  script:
+#    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
 #  when: manual
