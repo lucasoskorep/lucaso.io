@@ -14,7 +14,7 @@ build:
   before_script:
     - docker context create builder
     - docker buildx create builder --use --name "$BUILDER_NAME"
-    - docker login -u "$GITEA_REGISTRY_USER" -p "$GITEA_REGISTRY_PASSWORD" $GITEA_REGISTRY
+    - docker login -u "$GITEA_REGISTRY_USER" -p "$GITEA_REGISTRY_PASSWORD" $GITEA_REGISTRY_URL
   after_script:
     - docker buildx rm "$BUILDER_NAME"
     - docker context rm builder
