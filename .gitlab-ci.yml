@@ -38,5 +38,5 @@ deploy:
     name: dtzar/helm-kubectl:latest
     entrypoint: [ '' ]
   script:
-    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=$CI_COMMIT_SHA"
+    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=$CI_COMMIT_SHA" -f ./helm/deploy.values.yaml
   when: manual
