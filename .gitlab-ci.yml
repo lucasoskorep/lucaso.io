@@ -1,6 +1,6 @@
 stages:
   - build-and-upload
-#  - deploy
+  - deploy
 #  - publish-container
 
 build:
@@ -21,23 +21,22 @@ build:
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   script:
     - docker buildx ls
-    - docker buildx build --target release --platform linux/amd64,linux/arm64 -t $GITEA_REGISTRY_URL/lucasoskorep/lucaso.io:latest . --push
-
+    - docker buildx build --target release --platform linux/amd64,linux/arm64 -t $GITEA_REGISTRY_URL/lucasoskorep/lucaso.io:latest -t $GITEA_REGISTRY_URL/lucasoskorep/lucaso.io:$CI_COMMIT_SHA . --push
   rules:
     - if: $CI_COMMIT_BRANCH
       exists:
         - Dockerfile
 
-#deploy:
-#  variables:
-#    APP_NAME: chaosdev
-#  stage: deploy
-#  before_script:
-#    - kubectl config get-contexts
-#    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
-#  image:
-#    name: dtzar/helm-kubectl:latest
-#    entrypoint: [ '' ]
-#  script:
-#    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=latest"
-#  when: manual
+deploy:
+  variables:
+    APP_NAME: chaosdev
+  stage: deploy
+  before_script:
+    - kubectl config get-contexts
+    - kubectl config use-context lucasoskorep/rpi-kube-config:rpi-cluster
+  image:
+    name: dtzar/helm-kubectl:latest
+    entrypoint: [ '' ]
+  script:
+    - helm upgrade ${APP_NAME} ./helm/chaosdev-site --install --namespace website --set "image.tag=$CI_COMMIT_SHA"
+  when: manual
