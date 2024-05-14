@@ -31,6 +31,8 @@ function waitForElm(selector) {
         initAnimation();
         addListeners();
     });
+    let targetx = 0
+    let targety = 0
 
     // Main
 
@@ -107,7 +109,7 @@ function waitForElm(selector) {
     }
 
     function mouseMove(e) {
-        var posx = posy = 0;
+        let posx = posy = 0;
         if (e.pageX || e.pageY) {
             posx = e.pageX;
             posy = e.pageY;
@@ -116,8 +118,21 @@ function waitForElm(selector) {
             posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
             posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
         }
-        target.x = posx;
-        target.y = posy;
+        if (posx < canvas.width && posy < canvas.height) {
+            target.x = posx;
+            target.y = posy;
+            // posx = canvas.width/2;
+            // posy = canvas.height/2;
+        }
+
+        // if (posx > canvas.width || posy > canvas.height) {
+        //
+        //     posx = canvas.width/2;
+        //     posy = canvas.height;
+        //     console.log("updating")
+        // }
+        // target.x = posx;
+        // target.y = posy;
     }
 
     function scrollCheck() {
