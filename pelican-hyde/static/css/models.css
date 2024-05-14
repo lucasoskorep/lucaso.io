@@ -1,0 +1,17 @@
+@media screen and (max-width: 78rem) {
+    .model-table {
+    }
+
+}
+
+.model-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30rem);
+    grid-gap: 5px;
+    margin: 5px;
+}
+
+.model-cell {
+    width: 30rem;
+    padding: 10px;
+}

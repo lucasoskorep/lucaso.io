@@ -1,44 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="posts">
-    <h1 class="post-title">
-        <a>3d Printing and Modeling
-{% set categories_set = [] %}
-{% for article in articles %}
-    {% if article.category not in categories_set %}
-        {% set categories_set = categories_set.append(article.category) %}
-    {% endif %}
-{% endfor %}
-{% for category in categories_set %}
-    {{ category }}
-{% endfor %}
-        {{ categories_set }}</a>
-    </h1>
-    {% for article in articles %}
-    {% if article.category == 'models' %}
-    <div class="post">
-        <h1 href="{{ SITEURL }}/{{ article.url }}">
-            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+    <div>
+        <h1 class="post-title">
+            <a>3d Printing and Modeling</a>
+{#                {% set categories_set = [] %}#}
+{#                {% for article in articles %}#}
+{#                    {% if article.category not in categories_set %}#}
+{#                        {% set categories_set = categories_set.append(article.category) %}#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{#                {% for category in categories_set %}#}
+{#                    {{ category }}#}
+{#                {% endfor %}#}
+{#                {{ categories_set }}</a>#}
         </h1>
-        <span class="post-date">{{ article.locale_date }}</span>
-        <img alt="plant-pot" src="/images/{{ article.image }}">
-        {% if article.tags %}
-        <span class="post-tags">
+        <div class="model-table">
+            {% for article in articles %}
+                {% if article.category == 'models' %}
+                    <div class="model-cell">
+                        <h1 href="{{ SITEURL }}/{{ article.url }}">
+                            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                        </h1>
+                        <span class="post-date">{{ article.locale_date }}</span>
+                        <img alt="plant-pot" src="/images/{{ article.image }}">
+                        {% if article.tags %}
+                            <span class="post-tags">
 						Tags:
 						<ul>
 							{% for tag in article.tags %}
-								<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
-							{% endfor %}
+                                <li>
+                                    <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                                </li>
+                            {% endfor %}
 						</ul>
 					</span>
-        {% endif %}
-        <p>
-<!--            {{ article.summary }}-->
-        </p>
-        <a class="read-more" href="{{ SITEURL }}/{{ article.url }}">More Info</a><a class="read-more" href="{{ article.printables }}">Download on Printables</a>
+                        {% endif %}
+                        <p>
+{#                            {{ article.summary }}#}
+                        </p>
+                        <a class="read-more"
+                           href="{{ SITEURL }}/{{ article.url }}">
+                            More Info
+                        </a>
+                        <a class="read-more"
+                           href="{{ article.printables }}">
+                            Download
+                            on Printables</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-    {% endif %}
-    {% endfor %}
-</div>
 {% endblock %}

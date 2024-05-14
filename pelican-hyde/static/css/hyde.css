@@ -216,7 +216,7 @@ a.sidebar-social-item.active:focus {
 
 @media (min-width: 48em) {
   .content {
-    max-width: 38rem;
+    /*max-width: 38rem;*/
     margin-left: 20rem;
     margin-right: 2rem;
   }
@@ -254,7 +254,9 @@ a.sidebar-social-item.active:focus {
   }
 }
 
-
+.posts {
+  max-width: 48rem;
+}
 
 /*
  * Themes
