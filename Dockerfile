@@ -1,17 +1,23 @@
-FROM docker.io/library/python:3.11 as builder
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim as builder
 LABEL authors="lucasoskorep"
+ARG JUST_VERSION=1.39.0
+
+RUN apt update && apt install make -y
+
+# RUN \
+#  wget -O - https://github.com/casey/just/releases/download/${JUST_VERSION}/just-${JUST_VERSION}-x86_64-unknown-linux-musl.tar.gz \
+#  | tar --directory /usr/local/bin --extract --gzip --file - just
 
 WORKDIR /app
 
-RUN pip install poetry
-
 COPY pyproject.toml .
+COPY README.md .
 
-RUN poetry install
+RUN uv sync
 
 COPY . .
 
-RUN poetry run make publish
+RUN uv run make publish
 
 FROM docker.io/library/nginx:latest as release
 LABEL authors="lucasoskorep"
