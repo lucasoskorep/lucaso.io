@@ -1,0 +1,82 @@
+name: Build and Deploy Website
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  REGISTRY: gitea.chaosdev.gay
+  IMAGE_NAME: lucasoskorep/lucaso.io
+  APP_NAME: chaosdev
+
+jobs:
+  build:
+    runs-on: archlinux
+    container:
+      image: docker:cli
+    steps:
+      - name: Install dependencies
+        run: |
+          apk add --no-cache nodejs npm git
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        run: |
+          docker context create builder
+          docker buildx create builder --use --name personal-website
+
+      - name: Login to Gitea Registry
+        run: |
+          echo "${{ secrets.GITEA_REGISTRY_PASSWORD }}" | docker login ${{ env.REGISTRY }} -u "${{ secrets.GITEA_REGISTRY_USER }}" --password-stdin
+
+      - name: Build and push Docker image
+        run: |
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-8)
+          docker buildx build \
+            --target release \
+            --platform linux/amd64,linux/arm64 \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${SHORT_SHA} \
+            . --push
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker buildx rm personal-website || true
+          docker context rm builder || true
+
+  deploy:
+    needs: build
+    runs-on: archlinux
+    container:
+      image: dtzar/helm-kubectl:latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Install dependencies
+        run: |
+          apk add --no-cache nodejs npm git || apt-get update && apt-get install -y nodejs npm git || true
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Deploy with Helm
+        run: |
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-8)
+          helm upgrade ${{ env.APP_NAME }} ./helm/chaosdev-site \
+            --install \
+            --namespace website \
+            --set "image.tag=${SHORT_SHA}" \
+            -f ./helm/deploy.values.yaml
