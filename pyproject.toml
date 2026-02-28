@@ -3,32 +3,13 @@ name = "lucaso.io"
 version = "0.2.0"
 description = "Lucas Oskorep's Personal Website"
 authors = ["Lucas Oskorep <lucas.oskorep@gmail.com>"]
-readme = "README.md"
+license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.12"
-pelican = {extras = ["markdown"], version = "^4.9.1"}
-markdown = "^3.5.2"
-requests = "^2.31.0"
-
+python = "^3.10"
+pelican = "*"
+pelican-hyde = "*"
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
-
-
-[project]
-authors = [
-    {name = "Lucas Oskorep", email = "lucas.oskorep@gmail.com"},
-]
-requires-python = "<4.0,>=3.12"
-dependencies = [
-    "pelican[markdown]<5.0.0,>=4.9.1",
-    "markdown<4.0.0,>=3.5.2",
-    "requests<3.0.0,>=2.31.0",
-    "pdm-backend>=2.4.4",
-]
-name = "lucaso.io"
-version = "0.2.0"
-description = "Lucas Oskorep's Personal Website"
-readme = "README.md"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
