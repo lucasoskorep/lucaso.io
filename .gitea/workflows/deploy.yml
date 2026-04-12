@@ -60,7 +60,7 @@ jobs:
     runs-on: archlinux
     container:
       image: dtzar/helm-kubectl:latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Install dependencies
         run: |
