@@ -9,7 +9,7 @@
         <h3>Lucas Oskorep</h3>
         <p><b>Software Engineer</b></p>
         <p>Hi! My name is Lucas. I'm a software engineer and most recently I've been working at a startup called <b>Rokt</b>, where I work on K8s infrastructure, developing scalable Go microservices, and improving the developer experience.</p>
-        <p style="margin-bottom:0">I made this website to document and share some of the coding and 3D printing projects I've worked on, along with blog posts and my resume. Thanks for visiting!</p>
+        <p style="margin-bottom:0">I made this website to document and share some of the coding and 3D printing projects I've worked on, along with blog posts. Thanks for visiting!</p>
     </div>
     <div class="status"><span>/home/lucas/about.txt</span><span>Lucas Oskorep</span></div>
 </div>
@@ -42,25 +42,22 @@
     <div class="status"><span>8 projects</span><span>Click any row to open</span></div>
 </div>
 
-<!-- APP 3: TERMINAL — SOCIAL LINKS -->
-<div class="win" id="w-term" style="left:112px; top:360px; width:455px; height:265px; z-index:22;">
+<!-- APP 3: BLOG -->
+<div class="win hidden" id="w-blog" style="left:260px; top:120px; width:470px; z-index:19;">
     <div class="tb">
-        <svg viewBox="0 0 16 16"><rect x="1" y="2" width="14" height="12" fill="#000" stroke="#fff"/><text x="3" y="11" fill="#33ff78" font-family="monospace" font-size="8">$</text></svg>
-        <span class="t-label">terminal — Links.sh</span>
+        <svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000"/><line x1="4" y1="5" x2="12" y2="5" stroke="#183661" stroke-width="2"/></svg>
+        <span class="t-label">Blog — /home/lucas/blog</span>
         <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
     </div>
-    <div class="body plain">
-<pre class="term"><b>lucas@linux</b>:~$ whoami --links
-<b>github</b>   → <a href="https://github.com/lucasoskorep" target="_blank" rel="noopener">github.com/lucasoskorep</a>
-<b>gitlab</b>   → <a href="https://gitlab.com/lucasoskorep" target="_blank" rel="noopener">gitlab.com/lucasoskorep</a>
-<b>gitea</b>    → <a href="https://gitea.chaosdev.gay/lucasoskorep" target="_blank" rel="noopener">gitea.chaosdev.gay/lucasoskorep</a>
-<b>last.fm</b>  → <a href="https://www.last.fm/user/chaos2theory" target="_blank" rel="noopener">last.fm/user/chaos2theory</a>
-<b>linkedin</b> → <a href="https://www.linkedin.com/in/lucas-oskorep/" target="_blank" rel="noopener">linkedin.com/in/lucas-oskorep</a>
-
-<b>lucas@linux</b>:~$ ls ~/sections
-<a href="#projects" data-open="projects">projects/</a>  <a href="#blog" data-open="blog">blog/</a>  <a href="#models" data-open="models">3d-prints/</a>  <a href="#resume" data-open="resume">resume.sh</a>
-<b>lucas@linux</b>:~$ <span class="c">█</span></pre>
+    <div class="body">
+        <h3><a href="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" data-nav="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html">Adding Yubikey as Passwordless Sudo on Arch Linux</a></h3>
+        <p>Configuring <code>pam_u2f</code> on Arch Linux so a physical touch on your YubiKey authenticates <code>sudo</code> commands in the terminal.<span class="tag">Dec 2023</span></p>
+        <div class="preview-strip">
+            <p>Read the full guide and PAM configuration:</p>
+            <a class="p-btn" href="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" data-nav="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" style="font-weight:700">↗ Read Blog Post</a>
+        </div>
     </div>
+    <div class="status"><span>1 post</span><span>/home/lucas/blog</span></div>
 </div>
 
 <!-- APP 4: 3D PRINTS -->
@@ -92,22 +89,25 @@
     <div class="status"><span>9 STL models</span><span>/home/lucas/prints</span></div>
 </div>
 
-<!-- APP 5: BLOG -->
-<div class="win hidden" id="w-blog" style="left:260px; top:120px; width:470px; z-index:19;">
+<!-- APP 5: TERMINAL — SOCIAL LINKS -->
+<div class="win" id="w-term" style="left:112px; top:360px; width:455px; height:265px; z-index:22;">
     <div class="tb">
-        <svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000"/><line x1="4" y1="5" x2="12" y2="5" stroke="#183661" stroke-width="2"/></svg>
-        <span class="t-label">Blog — /home/lucas/blog</span>
+        <svg viewBox="0 0 16 16"><rect x="1" y="2" width="14" height="12" fill="#000" stroke="#fff"/><text x="3" y="11" fill="#33ff78" font-family="monospace" font-size="8">$</text></svg>
+        <span class="t-label">terminal — Links.sh</span>
         <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
     </div>
-    <div class="body">
-        <h3><a href="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" data-nav="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html">Adding Yubikey as Passwordless Sudo on Arch Linux</a></h3>
-        <p>Configuring <code>pam_u2f</code> on Arch Linux so a physical touch on your YubiKey authenticates <code>sudo</code> commands in the terminal.<span class="tag">Dec 2023</span></p>
-        <div class="preview-strip">
-            <p>Read the full guide and PAM configuration:</p>
-            <a class="p-btn" href="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" data-nav="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" style="font-weight:700">↗ Read Blog Post</a>
-        </div>
+    <div class="body plain">
+<pre class="term"><b>lucas@linux</b>:~$ whoami --links
+<b>github</b>   → <a href="https://github.com/lucasoskorep" target="_blank" rel="noopener">github.com/lucasoskorep</a>
+<b>gitlab</b>   → <a href="https://gitlab.com/lucasoskorep" target="_blank" rel="noopener">gitlab.com/lucasoskorep</a>
+<b>gitea</b>    → <a href="https://gitea.chaosdev.gay/lucasoskorep" target="_blank" rel="noopener">gitea.chaosdev.gay/lucasoskorep</a>
+<b>last.fm</b>  → <a href="https://www.last.fm/user/chaos2theory" target="_blank" rel="noopener">last.fm/user/chaos2theory</a>
+<b>linkedin</b> → <a href="https://www.linkedin.com/in/lucas-oskorep/" target="_blank" rel="noopener">linkedin.com/in/lucas-oskorep</a>
+
+<b>lucas@linux</b>:~$ ls ~/sections
+<a href="#projects" data-open="projects">projects/</a>  <a href="#blog" data-open="blog">blog/</a>  <a href="#models" data-open="models">3d-prints/</a>{% if SHOW_RESUME %}  <a href="#resume" data-open="resume">resume.sh</a>{% endif %}
+<b>lucas@linux</b>:~$ <span class="c">█</span></pre>
     </div>
-    <div class="status"><span>1 post</span><span>/home/lucas/blog</span></div>
 </div>
 
 <!-- APP 6: RECIPES -->
@@ -136,6 +136,7 @@
     <div class="status"><span>4 recipes</span><span>/home/lucas/recipes</span></div>
 </div>
 
+{% if SHOW_RESUME %}
 <!-- APP 7: RESUME -->
 <div class="win hidden" id="w-resume" style="left:320px; top:90px; width:450px; z-index:18;">
     <div class="tb">
@@ -154,6 +155,7 @@
     </div>
     <div class="status"><span>/home/lucas/resume.sh</span><span>Read-only</span></div>
 </div>
+{% endif %}
 
 <!-- Bottom-Right Secret Recipes Icon (not opened by default) -->
 <div class="d-icon secret-icon" data-open="recipes">

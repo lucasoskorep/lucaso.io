@@ -13,6 +13,9 @@ THEME = './pelican-hyde'
 DISPLAY_PAGES_ON_MENU = True
 BIO = ('Software Engineer')
 
+# Feature flags
+SHOW_RESUME = False
+
 MENUITEMS = [
     ("About",  "/")
 ]

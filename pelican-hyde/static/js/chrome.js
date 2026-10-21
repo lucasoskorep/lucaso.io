@@ -6,7 +6,7 @@
   const OPEN_REQ_KEY = "lucaso_open_win_v1";
   const LAST_WS2_KEY = "lucaso_last_ws2_v1";
 
-  const ORDER = ["about", "projects", "blog", "models", "term", "resume", "recipes"];
+  const ORDER = ["about", "projects", "blog", "models", "term", "recipes", "resume"];
   const TITLES = {
     about: "About Me",
     projects: "Projects",
