@@ -357,8 +357,11 @@ td.code .highlight { border: 1px solid var(--gtk-hi); padding: .75rem .9rem; }
 .giscus, .giscus-frame { color-scheme: dark; margin-top: 1.2rem; }
 
 @media (max-width: 900px) {
-  html, body, body.is-desktop, body.is-workspace-2 {
-    overflow: auto; height: auto; padding: 38px 0 16px;
+  html {
+    overflow: auto; height: auto; margin: 0; padding: 0;
+  }
+  body, body.is-desktop, body.is-workspace-2 {
+    overflow: auto; height: auto; margin: 0; padding: 34px 0 16px;
   }
   .top-panel {
     position: fixed; top: 0; left: 0; right: 0; height: 34px;
@@ -398,7 +401,7 @@ td.code .highlight { border: 1px solid var(--gtk-hi); padding: .75rem .9rem; }
   }
   .win {
     position: relative !important; left: auto !important; top: auto !important;
-    width: auto !important; height: auto !important; margin: 4px 6px; z-index: 10 !important;
+    width: auto !important; height: auto !important; margin: 6px; z-index: 10 !important;
   }
   .win.maxed {
     top: auto !important; height: auto !important; width: auto !important;
@@ -407,5 +410,5 @@ td.code .highlight { border: 1px solid var(--gtk-hi); padding: .75rem .9rem; }
     position: relative; right: auto; bottom: auto;
     width: 110px; margin: 12px 12px 8px auto; z-index: 10;
   }
-  .subpage-desk { margin-left: 0; padding: 4px 6px 12px; z-index: 10; }
+  .subpage-desk { margin-left: 0; padding: 2px 6px 12px; z-index: 10; }
 }
