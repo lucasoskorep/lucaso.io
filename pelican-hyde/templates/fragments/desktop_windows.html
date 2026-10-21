@@ -27,11 +27,11 @@
     <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span></div>
     <div class="body">
         <table class="filelist">
-            <tr><th>Project</th><th>Modified</th></tr>
+            <tr><th>Project</th><th>Description</th></tr>
             {% for project in projects %}
             <tr data-nav="{{ SITEURL }}/{{ project.url }}">
                 <td><b>{{ project.title }}</b><span class="tag">dir</span></td>
-                <td>{{ project.locale_date }}</td>
+                <td>{{ project.summary | striptags }}</td>
             </tr>
             {% endfor %}
         </table>
@@ -48,11 +48,10 @@
     </div>
     <div class="body">
         <table class="filelist">
-            <tr><th>Post</th><th>Title</th><th>Modified</th></tr>
+            <tr><th>Title</th><th>Modified</th></tr>
             {% for post in posts %}
             <tr data-nav="{{ SITEURL }}/{{ post.url }}">
-                <td><b>{{ post.slug }}</b><span class="tag">md</span></td>
-                <td>{{ post.title }}</td>
+                <td><b>{{ post.title }}</b><span class="tag">md</span></td>
                 <td>{{ post.locale_date }}</td>
             </tr>
             {% endfor %}
@@ -71,11 +70,10 @@
     <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span></div>
     <div class="body">
         <table class="filelist">
-            <tr><th>Model File</th><th>Tags</th><th>Download</th></tr>
+            <tr><th>Model File</th><th>Download</th></tr>
             {% for model in models %}
             <tr>
                 <td data-nav="{{ SITEURL }}/{{ model.url }}"><b>{{ model.title }}</b><span class="tag">stl</span></td>
-                <td data-nav="{{ SITEURL }}/{{ model.url }}">{% for tag in model.tags %}<span class="tag">{{ tag }}</span> {% endfor %}</td>
                 <td>{% if model.printables %}<a class="tag dl" href="{{ model.printables }}" target="_blank" rel="noopener">Printables ↗</a>{% endif %}</td>
             </tr>
             {% endfor %}

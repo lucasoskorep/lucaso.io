@@ -1,6 +1,7 @@
 Title: Macropad OS
 Date: 2010-12-03 10:20
 Category: projects
+Summary: Firmware + companion app for custom macro pad
 ProjectStatus: inactive
 Authors: Lucas Oskorep
 Gitlab: https://gitlab.com/lucasoskorep/MacroPadOS

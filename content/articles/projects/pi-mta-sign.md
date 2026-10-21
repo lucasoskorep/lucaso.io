@@ -1,6 +1,7 @@
 Title: Pi MTA Sign
 Date: 2010-12-01 
 Category: projects
+Summary: Real-time NYC subway arrival sign
 ProjectStatus: active
 Authors: Lucas Oskorep
 Gitlab: https://gitlab.com/lucasoskorep/pi-mta-sign

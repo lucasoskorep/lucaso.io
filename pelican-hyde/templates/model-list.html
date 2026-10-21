@@ -17,11 +17,10 @@
         </div>
         <div class="body">
             <table class="filelist">
-                <tr><th>Model File</th><th>Tags</th><th>Download</th></tr>
+                <tr><th>Model File</th><th>Download</th></tr>
                 {% for article in articles %}{% if article.category == 'models' %}
                     <tr>
                         <td data-nav="{{ SITEURL }}/{{ article.url }}"><b>{{ article.title }}</b><span class="tag">stl</span></td>
-                        <td data-nav="{{ SITEURL }}/{{ article.url }}">{% for tag in article.tags %}<span class="tag">{{ tag }}</span> {% endfor %}</td>
                         <td>{% if article.printables %}<a class="tag dl" href="{{ article.printables }}" target="_blank" rel="noopener">Printables ↗</a>{% endif %}</td>
                     </tr>
                 {% endif %}{% endfor %}

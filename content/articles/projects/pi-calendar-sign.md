@@ -1,6 +1,7 @@
 Title: Pi Calendar Sign
 Date: 2022-07-22
 Category: projects
+Summary: Wall-mounted e-ink calendar display
 ProjectStatus: inactive
 Authors: Lucas Oskorep
 Gitlab: https://gitlab.com/lucasoskorep/pi-calendar-sign

@@ -1,6 +1,7 @@
 Title: Kano SmartWand Async
 Date: 2010-12-03 10:20
 Category: projects
+Summary: Async client for Kano motion wands
 ProjectStatus: inactive
 Authors: Lucas Oskorep
 Gitlab: https://gitlab.com/lucasoskorep/kano-wand-python-async

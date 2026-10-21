@@ -17,12 +17,12 @@
         </div>
         <div class="body">
             <table class="filelist">
-                <tr><th>Project</th><th>Modified</th></tr>
+                <tr><th>Project</th><th>Description</th></tr>
                 {% for article in articles %}
                     {% if article.category == 'projects' %}
                         <tr data-nav="{{ SITEURL }}/{{ article.url }}">
                             <td><b>{{ article.title }}</b><span class="tag">dir</span></td>
-                            <td>{{ article.locale_date }}</td>
+                            <td>{{ article.summary | striptags }}</td>
                         </tr>
                     {% endif %}
                 {% endfor %}

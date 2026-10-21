@@ -1,6 +1,7 @@
 Title: Pi K8s Cluster
 Date: 2010-12-01 
 Category: projects
+Summary: At-home Raspberry Pi Kubernetes cluster
 ProjectStatus: active
 Authors: Lucas Oskorep
 Status: hidden
