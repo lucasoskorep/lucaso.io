@@ -4,6 +4,7 @@ Category: projects
 Summary: Multi-device audio capture utility
 ProjectStatus: inactive
 Authors: Lucas Oskorep
+Status: hidden
 Gitlab: https://gitlab.com/lucasoskorep/python-audio-recorder
 UseReadme: true
 

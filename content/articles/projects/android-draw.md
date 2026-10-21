@@ -4,6 +4,7 @@ Category: projects
 Summary: Touch canvas drawing application
 ProjectStatus: inactive
 Authors: Lucas Oskorep
+Status: hidden
 Gitlab: https://gitlab.com/lucasoskorep/androiddrawing
 UseReadme: true
 
