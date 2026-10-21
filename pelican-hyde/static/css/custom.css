@@ -356,15 +356,67 @@ td.code .highlight { border: 1px solid var(--gtk-hi); padding: .75rem .9rem; }
 .highlight .nf, .highlight .nc, .highlight .fm { color: #7cc4ff; }
 .giscus, .giscus-frame { color-scheme: dark; margin-top: 1.2rem; }
 
+/* Top panel responsive rows */
+@media (min-width: 901px) {
+  .panel-row-top,
+  .panel-row-sub {
+    display: contents;
+  }
+  .tasks { order: 1; }
+  .top-right { order: 2; margin-left: auto; }
+  .clock { order: 3; }
+}
+
 @media (max-width: 900px) {
-  html, body, body.is-desktop { overflow: auto; height: auto; padding: 38px 0 16px; }
+  html, body, body.is-desktop, body.is-workspace-2 {
+    overflow: auto; height: auto; padding: 66px 0 16px;
+  }
+  .top-panel {
+    position: fixed; top: 0; left: 0; right: 0; height: auto;
+    flex-direction: column; align-items: stretch; gap: 3px;
+    padding: 3px 6px;
+  }
+  .top-motto, .panel-grip { display: none !important; }
+  .panel-row-top {
+    display: flex; align-items: center; width: 100%; height: 26px; gap: 4px;
+  }
+  .panel-row-top .clock {
+    margin-left: auto; min-width: 58px; padding: 2px 6px; font-size: 10.5px;
+  }
+  .panel-row-sub {
+    display: flex; align-items: center; width: 100%; height: 26px; gap: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 2px;
+  }
+  .panel-row-sub .tasks {
+    display: flex; gap: 4px; flex: 1; min-width: 0; overflow: hidden; pointer-events: auto;
+  }
+  .panel-row-sub .tasks .task {
+    max-width: 170px; height: 22px; padding: 0 6px; font-size: 10px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .panel-row-sub .top-right {
+    margin-left: auto; padding-left: 0;
+  }
+  .panel-row-sub .top-right .p-btn {
+    height: 22px; padding: 0 6px; font-size: 10.5px;
+  }
+  .startmenu { top: 62px; }
+
   .desktop {
     position: relative; top: auto; left: auto; bottom: auto;
     flex-direction: row; width: 100%; height: auto; padding: 8px; z-index: 10;
   }
+  body.is-workspace-2 .desktop {
+    justify-content: center;
+    margin: 16px auto 28px;
+    width: auto;
+  }
   .win {
     position: relative !important; left: auto !important; top: auto !important;
     width: auto !important; height: auto !important; margin: 8px; z-index: 10 !important;
+  }
+  .win.maxed {
+    top: auto !important; height: auto !important; width: auto !important;
   }
   .d-icon.secret-icon {
     position: relative; right: auto; bottom: auto;
@@ -372,5 +424,4 @@ td.code .highlight { border: 1px solid var(--gtk-hi); padding: .75rem .9rem; }
   }
   .subpage-desk { margin-left: 0; padding: 8px; z-index: 10; }
   .rz, #btnArrange { display: none !important; }
-  .top-panel { position: fixed; }
 }

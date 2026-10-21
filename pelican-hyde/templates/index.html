@@ -13,10 +13,9 @@
 <button class="p-btn" id="btnArrange">⊞ Arrange Windows</button>
 {% endblock %}
 
-{% block desktop_icons %}
-{% include 'sidebar.html' %}
-{% endblock %}
+{% block desktop_icons %}{% endblock %}
 
 {% block content %}
+{% include 'sidebar.html' %}
 {% include 'fragments/desktop_windows.html' %}
 {% endblock %}
