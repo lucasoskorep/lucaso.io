@@ -78,9 +78,9 @@
     <div class="side">lucaso.io</div>
     <ul>
         <li data-open="about"><span>About Me</span><small>intro</small></li>
-        <li data-open="projects"><span>Projects</span><small>8</small></li>
-        <li data-open="blog"><span>Blog</span><small>1</small></li>
-        <li data-open="models"><span>3D Prints</span><small>9</small></li>
+        <li data-open="projects"><span>Projects</span><small>{{ articles | selectattr('category', 'equalto', 'projects') | list | length }}</small></li>
+        <li data-open="blog"><span>Blog</span><small>{{ articles | selectattr('category', 'equalto', 'blog') | list | length }}</small></li>
+        <li data-open="models"><span>3D Prints</span><small>{{ articles | selectattr('category', 'equalto', 'models') | list | length }}</small></li>
         <li data-open="term"><span>Links</span><small>sh</small></li>
         {% if SHOW_RESUME %}
         <li data-open="resume"><span>resume.sh</span><small>CV</small></li>

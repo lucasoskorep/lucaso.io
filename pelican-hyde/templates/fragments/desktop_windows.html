@@ -1,3 +1,6 @@
+{% set projects = articles | selectattr('category', 'equalto', 'projects') | list %}
+{% set models = articles | selectattr('category', 'equalto', 'models') | list %}
+{% set posts = articles | selectattr('category', 'equalto', 'blog') | list %}
 <!-- APP 1: ABOUT ME -->
 <div class="win" id="w-about" style="left:112px; top:42px; width:440px; z-index:21;">
     <div class="tb">
@@ -21,25 +24,19 @@
         <span class="t-label">Projects — /home/lucas/projects</span>
         <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
     </div>
-    <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span><span><a href="{{ SITEURL }}/pages/code-projects.html" data-nav="{{ SITEURL }}/pages/code-projects.html" style="color:inherit;text-decoration:none"><u>A</u>ll Projects Page →</a></span></div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span></div>
     <div class="body">
         <table class="filelist">
-            <tr><th>Project</th><th>Stack</th><th>Summary</th></tr>
-            <tr data-nav="{{ SITEURL }}/pi-k8s-cluster.html"><td><b>pi-k8s-cluster</b></td><td>Pi 4s &amp; 5s</td><td>At-home Raspberry Pi Kubernetes cluster</td></tr>
-            <tr data-nav="{{ SITEURL }}/macropad-os.html"><td><b>macropad-os</b></td><td>Rust / Python</td><td>Firmware + companion app for custom macro pad</td></tr>
-            <tr data-nav="{{ SITEURL }}/tensordex.html"><td><b>tensordex</b></td><td>TFLite</td><td>3D-printed robotic hand for gesture ML</td></tr>
-            <tr data-nav="{{ SITEURL }}/kano-smartwand-async.html"><td><b>kano-smartwand-async</b></td><td>Async Python</td><td>Async client for Kano motion wands</td></tr>
-            <tr data-nav="{{ SITEURL }}/pi-calendar-sign.html"><td><b>pi-calendar-sign</b></td><td>Raspberry Pi</td><td>Wall-mounted e-ink calendar display</td></tr>
-            <tr data-nav="{{ SITEURL }}/pi-mta-sign.html"><td><b>pi-mta-sign</b></td><td>GTFS-RT</td><td>Real-time NYC subway arrival sign</td></tr>
-            <tr data-nav="{{ SITEURL }}/python-audio-recorder.html"><td><b>python-audio-recorder</b></td><td>Python</td><td>Multi-device audio capture utility</td></tr>
-            <tr data-nav="{{ SITEURL }}/android-draw.html"><td><b>android-draw</b></td><td>Android</td><td>Touch canvas drawing application</td></tr>
+            <tr><th>Project</th><th>Modified</th></tr>
+            {% for project in projects %}
+            <tr data-nav="{{ SITEURL }}/{{ project.url }}">
+                <td><b>{{ project.title }}</b><span class="tag">dir</span></td>
+                <td>{{ project.locale_date }}</td>
+            </tr>
+            {% endfor %}
         </table>
-        <div class="preview-strip">
-            <p>Click any project row above to open its writeup, or view the full index:</p>
-            <a class="p-btn" href="{{ SITEURL }}/pages/code-projects.html" data-nav="{{ SITEURL }}/pages/code-projects.html" style="font-weight:700">↗ All Projects</a>
-        </div>
     </div>
-    <div class="status"><span>8 projects</span><span>Click any row to open</span></div>
+    <div class="status"><span>{{ projects | length }} projects</span><span>Click any row to open</span></div>
 </div>
 
 <!-- APP 3: BLOG -->
@@ -50,14 +47,18 @@
         <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
     </div>
     <div class="body">
-        <h3><a href="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" data-nav="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html">Adding Yubikey as Passwordless Sudo on Arch Linux</a></h3>
-        <p>Configuring <code>pam_u2f</code> on Arch Linux so a physical touch on your YubiKey authenticates <code>sudo</code> commands in the terminal.<span class="tag">Dec 2023</span></p>
-        <div class="preview-strip">
-            <p>Read the full guide and PAM configuration:</p>
-            <a class="p-btn" href="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" data-nav="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" style="font-weight:700">↗ Read Blog Post</a>
-        </div>
+        <table class="filelist">
+            <tr><th>Post</th><th>Title</th><th>Modified</th></tr>
+            {% for post in posts %}
+            <tr data-nav="{{ SITEURL }}/{{ post.url }}">
+                <td><b>{{ post.slug }}</b><span class="tag">md</span></td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.locale_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
-    <div class="status"><span>1 post</span><span>/home/lucas/blog</span></div>
+    <div class="status"><span>blog posts</span><span>Click any row to read</span></div>
 </div>
 
 <!-- APP 4: 3D PRINTS -->
@@ -67,26 +68,20 @@
         <span class="t-label">3D Prints — /home/lucas/prints</span>
         <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
     </div>
-    <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span><span><a href="{{ SITEURL }}/pages/3d-printing.html" data-nav="{{ SITEURL }}/pages/3d-printing.html" style="color:inherit;text-decoration:none"><u>A</u>ll 3D Prints Page →</a></span></div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span></div>
     <div class="body">
         <table class="filelist">
-            <tr><th>Model File</th><th>Category</th><th>Notes</th></tr>
-            <tr data-nav="{{ SITEURL }}/raspberry-pi-cluster-case.html"><td><b>raspberry-pi-cluster-case.stl</b></td><td>Enclosure</td><td>Stacked, vented Pi rack</td></tr>
-            <tr data-nav="{{ SITEURL }}/nvidia-30xx-12-pin-cable-comb.html"><td><b>nvidia-12pin-cable-comb.stl</b></td><td>PC Mod</td><td>GPU power cable organizer</td></tr>
-            <tr data-nav="{{ SITEURL }}/5-row-mobile-device-stand.html"><td><b>5-row-device-stand.stl</b></td><td>Desk</td><td>5-slot charging stand</td></tr>
-            <tr data-nav="{{ SITEURL }}/prusa-lak-spool-holder.html"><td><b>prusa-spool-holder.stl</b></td><td>Printer</td><td>Enclosure filament holder</td></tr>
-            <tr data-nav="{{ SITEURL }}/level-1-techs-kvm-table-mount.html"><td><b>kvm-table-mount.stl</b></td><td>Mount</td><td>Under-desk KVM bracket</td></tr>
-            <tr data-nav="{{ SITEURL }}/elephant-pot.html"><td><b>elephant-plant-pot.stl</b></td><td>Planter</td><td>Geometric self-draining pot</td></tr>
-            <tr data-nav="{{ SITEURL }}/valve-index-lens-holder.html"><td><b>valve-index-lens-holder.stl</b></td><td>VR</td><td>Prescription lens adapter</td></tr>
-            <tr data-nav="{{ SITEURL }}/intel-82599-10-gb-dual-port-network-card-pcie-slot.html"><td><b>intel-10g-nic-slot.stl</b></td><td>Server</td><td>Dual-port 10GbE PCIe bracket</td></tr>
-            <tr data-nav="{{ SITEURL }}/honeywell-fan-holder.html"><td><b>honeywell-fan-holder.stl</b></td><td>Mount</td><td>Custom fan holder bracket</td></tr>
+            <tr><th>Model File</th><th>Tags</th><th>Download</th></tr>
+            {% for model in models %}
+            <tr>
+                <td data-nav="{{ SITEURL }}/{{ model.url }}"><b>{{ model.title }}</b><span class="tag">stl</span></td>
+                <td data-nav="{{ SITEURL }}/{{ model.url }}">{% for tag in model.tags %}<span class="tag">{{ tag }}</span> {% endfor %}</td>
+                <td>{% if model.printables %}<a class="tag dl" href="{{ model.printables }}" target="_blank" rel="noopener">Printables ↗</a>{% endif %}</td>
+            </tr>
+            {% endfor %}
         </table>
-        <div class="preview-strip">
-            <p>Click any STL model row to view photos &amp; print details:</p>
-            <a class="p-btn" href="{{ SITEURL }}/pages/3d-printing.html" data-nav="{{ SITEURL }}/pages/3d-printing.html" style="font-weight:700">↗ All 3D Prints</a>
-        </div>
     </div>
-    <div class="status"><span>9 STL models</span><span>/home/lucas/prints</span></div>
+    <div class="status"><span>{{ models | length }} STL models</span><span>Click any row to open</span></div>
 </div>
 
 <!-- APP 5: TERMINAL — SOCIAL LINKS -->
