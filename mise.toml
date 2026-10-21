@@ -1,0 +1,75 @@
+[tools]
+python = "3.12"
+uv = "0.12.10"
+
+[env]
+_.python.venv = { path = ".venv", create = true }
+
+# --- Site building -----------------------------------------------------------
+
+[tasks.setup]
+description = "Install/refresh python dependencies with uv"
+run = "uv sync"
+
+[tasks.build]
+alias = "html"
+description = "Generate the static site into output/"
+run = "uv run pelican content -o output -s pelicanconf.py ${PELICANOPTS:-}"
+
+[tasks.publish]
+description = "Generate the site using production settings (publishconf.py)"
+run = "uv run pelican content -o output -s publishconf.py ${PELICANOPTS:-}"
+
+[tasks.clean]
+description = "Remove the generated output directory"
+run = "rm -rf output"
+
+[tasks.regenerate]
+description = "Regenerate files upon modification"
+run = "uv run pelican -r content -o output -s pelicanconf.py ${PELICANOPTS:-}"
+
+# --- Local dev server --------------------------------------------------------
+
+[tasks.serve]
+description = "Serve the site (mise run serve --port 1234)"
+run = "uv run pelican -l content -o output -s pelicanconf.py -p {{option(name='port', default='8000')}} ${PELICANOPTS:-}"
+
+[tasks.serve-global]
+description = "Serve to other machines (mise run serve-global --server 0.0.0.0)"
+run = "uv run pelican -l content -o output -s pelicanconf.py -b {{option(name='server', default='0.0.0.0')}} ${PELICANOPTS:-}"
+
+[tasks.devserver]
+description = "Serve and regenerate together (mise run devserver --port 1234)"
+run = "uv run pelican -lr content -o output -s pelicanconf.py -p {{option(name='port', default='8000')}} ${PELICANOPTS:-}"
+
+[tasks.devserver-global]
+description = "Regenerate and serve on 0.0.0.0"
+run = "uv run pelican -lr content -o output -s pelicanconf.py -b 0.0.0.0 ${PELICANOPTS:-}"
+
+# --- Utilities ---------------------------------------------------------------
+
+[tasks.update-projects]
+description = "Inject project READMEs into content/articles/projects"
+run = "uv run python project-updater.py"
+
+# --- Containers (podman) -------------------------------------------------------
+
+[tasks."container:build"]
+description = "Build the multi-arch image as a podman manifest"
+run = "podman build --target release --platform linux/arm64,linux/amd64 --manifest chaos2theory/personal-site:latest ."
+
+[tasks."container:push"]
+description = "Push the manifest to Gitea and Harbor, then remove it locally"
+run = """
+podman manifest push --all chaos2theory/personal-site:latest gitea.chaosdev.gay/lucasoskorep/personal-site:latest
+podman manifest push --all chaos2theory/personal-site:latest harbor.chaosdev.gay/website/personal-site:latest
+podman manifest rm chaos2theory/personal-site:latest
+"""
+
+[tasks."container:run"]
+description = "Build the image for the local arch and run it on port 8000"
+run = """
+podman build --target release --tag chaos2theory/personal-site:latest . --load
+podman run --rm -p 8000:80 localhost/chaos2theory/personal-site:latest
+podman image rm localhost/chaos2theory/personal-site:latest
+"""

@@ -1,32 +1,35 @@
 {% extends "base.html" %}
 
+{% block title %}Projects{% endblock %}
+{% block taskname %}Projects{% endblock %}
+
 {% block content %}
-<div class="posts">
-    <h1 class="post-title">
-        <a>Projects</a>
-    </h1>
-    {% for article in articles %}
-    {% if article.category == 'projects' %}
-    <div class="post">
-        <h1 class="post-title" href="{{ SITEURL }}/{{ article.url }}">
-            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-        </h1>
-        <span class="post-date">{{ article.locale_date }}</span>
-        {% if article.tags %}
-        <span class="post-tags">
-						Tags:
-						<ul>
-							{% for tag in article.tags %}
-								<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
-							{% endfor %}
-						</ul>
-					</span>{% endif %}
-        <p>
-            {{ article.summary }}
-        </p>
-        <a class="read-more" href="{{ SITEURL }}/{{ article.url }}">Continue reading »</a>
-    </div>
-    {% endif %}
-    {% endfor %}
-</div>
+<main class="subpage-desk">
+    <section class="win active subpage-win" id="w-subpage">
+        <div class="tb">
+            <svg viewBox="0 0 16 16"><path d="M1 3h5l1 2h8v9H1Z" fill="#ffcc00" stroke="#000"/></svg>
+            <span class="t-label">Projects — /home/lucas/projects (Workspace 2)</span>
+            <div class="btns"><button data-min title="Shade / Minimize">▁</button><button data-max title="Maximize">□</button><button data-close-subpage title="Close &amp; Return to Workspace 1 (Desktop)">✕</button></div>
+        </div>
+        <div class="menubar viewer-bar">
+            <a class="p-btn" href="{{ SITEURL }}/" data-back-desktop>← Back to Workspace 1 (Desktop)</a>
+            <span class="viewer-path">/home/lucas/projects</span>
+        </div>
+        <div class="body">
+            <table class="filelist">
+                <tr><th>Project</th><th>Tags</th><th>Modified</th></tr>
+                {% for article in articles %}
+                    {% if article.category == 'projects' %}
+                        <tr data-nav="{{ SITEURL }}/{{ article.url }}">
+                            <td><b>{{ article.title }}</b><span class="tag">dir</span></td>
+                            <td>{% for tag in article.tags %}<span class="tag">{{ tag }}</span> {% endfor %}</td>
+                            <td>{{ article.locale_date }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div class="status"><span>projects</span><span>Click any row to open</span></div>
+    </section>
+</main>
 {% endblock %}

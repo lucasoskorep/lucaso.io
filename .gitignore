@@ -58,4 +58,13 @@ target/
 
 output
 
+# Virtual environments
+.venv/
+
+# mise personal overrides
+*.local.toml
+
+# Redesign mockups
+redesigns/
+
 .idea

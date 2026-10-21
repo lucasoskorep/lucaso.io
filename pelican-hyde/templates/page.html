@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{% endblock %}
+{% block taskname %}{{ page.title }}{% endblock %}
+
+{% block content %}
+<main class="subpage-desk">
+    <section class="win active subpage-win" id="w-subpage">
+        <div class="tb">
+            <svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#ffffcc" stroke="#000"/><line x1="4" y1="5" x2="12" y2="5" stroke="#000"/><line x1="4" y1="8" x2="12" y2="8" stroke="#000"/></svg>
+            <span class="t-label">{{ page.title }} — Workspace 2</span>
+            <div class="btns"><button data-min title="Shade / Minimize">▁</button><button data-max title="Maximize">□</button><button data-close-subpage title="Close &amp; Return to Workspace 1 (Desktop)">✕</button></div>
+        </div>
+        <div class="menubar viewer-bar">
+            <a class="p-btn" href="{{ SITEURL }}/" data-back-desktop>← Back to Workspace 1 (Desktop)</a>
+            <span class="viewer-path">/home/lucas/pages/{{ page.slug }}</span>
+        </div>
+        <div class="body">
+            <div class="post">
+                <h1 class="post-title">{{ page.title }}</h1>
+                <div class="prose">
+                    {{ page.content }}
+                </div>
+            </div>
+        </div>
+        <div class="status"><span>/home/lucas/pages/{{ page.slug }}</span><span>Lucas Oskorep</span></div>
+    </section>
+</main>
+{% endblock %}

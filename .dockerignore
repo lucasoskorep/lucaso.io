@@ -1,0 +1,13 @@
+.git
+.gitignore
+.gitea
+.idea
+.venv
+__pycache__
+output
+output-test
+redesigns
+Dockerfile
+.gitlab-ci.yml
+*.pyc
+**/*.local.toml

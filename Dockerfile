@@ -1,25 +1,20 @@
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim as builder
+FROM ghcr.io/jdx/mise:2026.10.4-debian AS builder
 LABEL authors="lucasoskorep"
-ARG JUST_VERSION=1.39.0
-
-RUN apt update && apt install make -y
-
-# RUN \
-#  wget -O - https://github.com/casey/just/releases/download/${JUST_VERSION}/just-${JUST_VERSION}-x86_64-unknown-linux-musl.tar.gz \
-#  | tar --directory /usr/local/bin --extract --gzip --file - just
 
 WORKDIR /app
 
-COPY pyproject.toml .
-COPY README.md .
+# Install the project's tools (python, uv) from mise.toml
+COPY mise.toml ./
+RUN mise trust && mise install
 
-RUN uv sync
+# Pull python dependencies with uv (cached until the lockfile changes)
+COPY pyproject.toml uv.lock README.md ./
+RUN uv sync --frozen
 
 COPY . .
+RUN mise run publish
 
-RUN uv run make publish
-
-FROM docker.io/library/nginx:latest as release
+FROM docker.io/library/nginx:latest AS release
 LABEL authors="lucasoskorep"
 
 COPY --from=builder /app/output/ /usr/share/nginx/html

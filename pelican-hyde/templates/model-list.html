@@ -1,44 +1,33 @@
 {% extends "base.html" %}
 
+{% block title %}3D Prints{% endblock %}
+{% block taskname %}3D Prints{% endblock %}
+
 {% block content %}
-<div class="posts">
-    <h1 class="post-title">
-        <a>3d Printing and Modeling
-{% set categories_set = [] %}
-{% for article in articles %}
-    {% if article.category not in categories_set %}
-        {% set categories_set = categories_set.append(article.category) %}
-    {% endif %}
-{% endfor %}
-{% for category in categories_set %}
-    {{ category }}
-{% endfor %}
-        {{ categories_set }}</a>
-    </h1>
-    {% for article in articles %}
-    {% if article.category == 'models' %}
-    <div class="post">
-        <h1 href="{{ SITEURL }}/{{ article.url }}">
-            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-        </h1>
-        <span class="post-date">{{ article.locale_date }}</span>
-        <img alt="plant-pot" src="/images/{{ article.image }}">
-        {% if article.tags %}
-        <span class="post-tags">
-						Tags:
-						<ul>
-							{% for tag in article.tags %}
-								<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
-							{% endfor %}
-						</ul>
-					</span>
-        {% endif %}
-        <p>
-<!--            {{ article.summary }}-->
-        </p>
-        <a class="read-more" href="{{ SITEURL }}/{{ article.url }}">More Info</a><a class="read-more" href="{{ article.printables }}">Download on Printables</a>
-    </div>
-    {% endif %}
-    {% endfor %}
-</div>
+<main class="subpage-desk">
+    <section class="win active subpage-win" id="w-subpage">
+        <div class="tb">
+            <svg viewBox="0 0 16 16"><polygon points="8,1 15,5 15,11 8,15 1,11 1,5" fill="#55ffff" stroke="#000"/></svg>
+            <span class="t-label">3D Prints — /home/lucas/prints (Workspace 2)</span>
+            <div class="btns"><button data-min title="Shade / Minimize">▁</button><button data-max title="Maximize">□</button><button data-close-subpage title="Close &amp; Return to Workspace 1 (Desktop)">✕</button></div>
+        </div>
+        <div class="menubar viewer-bar">
+            <a class="p-btn" href="{{ SITEURL }}/" data-back-desktop>← Back to Workspace 1 (Desktop)</a>
+            <span class="viewer-path">/home/lucas/prints</span>
+        </div>
+        <div class="body">
+            <table class="filelist">
+                <tr><th>Model File</th><th>Tags</th><th>Download</th></tr>
+                {% for article in articles %}{% if article.category == 'models' %}
+                    <tr>
+                        <td data-nav="{{ SITEURL }}/{{ article.url }}"><b>{{ article.title }}</b><span class="tag">stl</span></td>
+                        <td data-nav="{{ SITEURL }}/{{ article.url }}">{% for tag in article.tags %}<span class="tag">{{ tag }}</span> {% endfor %}</td>
+                        <td>{% if article.printables %}<a class="tag dl" href="{{ article.printables }}" target="_blank" rel="noopener">Printables ↗</a>{% endif %}</td>
+                    </tr>
+                {% endif %}{% endfor %}
+            </table>
+        </div>
+        <div class="status"><span>3D models</span><span>Click any row to open</span></div>
+    </section>
+</main>
 {% endblock %}

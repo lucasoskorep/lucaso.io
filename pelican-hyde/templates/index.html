@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 
+{% block body_class %}is-desktop{% endblock %}
+
+{% block workspace_pager %}
+<span class="ws-btn on" title="Workspace 1 (Main Desktop)">1:Desktop</span>
+<a class="ws-btn" href="{{ SITEURL }}/pages/code-projects.html" id="ws2Link" title="Switch to Workspace 2 (Viewer)">2:Viewer</a>
+{% endblock %}
+
+{% block static_tasks %}{% endblock %}
+
+{% block top_right_controls %}
+<button class="p-btn" id="btnArrange">⊞ Arrange Windows</button>
+{% endblock %}
+
+{% block desktop_icons %}
+{% include 'sidebar.html' %}
+{% endblock %}
+
 {% block content %}
-<div class="post">
-    <h1 class="post-title"></h1>
-    <p>
-        Hi! My name is Lucas. I am a software engineer and most recently I ive been working at a startup called Rokt,
-        where I work on K8s infrastructure, developing scalable go microservices, and improving the developer
-        experience.
-        <br>
-        <br>
-        I made this website to document and share some of the coding and 3d printing projects I’ve worked on.
-        Thanks for visiting!
-    </p>
-</div>
+{% include 'fragments/desktop_windows.html' %}
 {% endblock %}

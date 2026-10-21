@@ -10,10 +10,8 @@ DEFAULT_LANG = 'en'
 
 # Theme settings
 THEME = './pelican-hyde'
-DISPLAY_PAGES_ON_MENU = 'true'
-BIO = ('Software Engineer'
-       '<br>'
-       '<i>Devops is a Meaningful Term</i>')
+DISPLAY_PAGES_ON_MENU = True
+BIO = ('Software Engineer')
 
 MENUITEMS = [
     ("About",  "/")
@@ -30,10 +28,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ("Pelican", "https://getpelican.com/"),
-    ("Python.org", "https://www.python.org/"),
-    ("Jinja2", "https://palletsprojects.com/p/jinja/"),
-    ("You can modify those links in your config file", "#"),
+    ("Built with Pelican", "https://getpelican.com/"),
 )
 
 # Social widget

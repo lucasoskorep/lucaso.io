@@ -1,0 +1,164 @@
+<!-- APP 1: ABOUT ME -->
+<div class="win" id="w-about" style="left:112px; top:42px; width:440px; z-index:21;">
+    <div class="tb">
+        <svg viewBox="0 0 16 16"><rect x="1" y="2" width="14" height="10" fill="#c0c0c0" stroke="#000"/><rect x="3" y="4" width="10" height="6" fill="#183661"/></svg>
+        <span class="t-label">About Me — Lucas Oskorep</span>
+        <div class="btns"><button data-min title="Shade / Minimize">▁</button><button data-max title="Maximize">□</button><button data-close title="Close">✕</button></div>
+    </div>
+    <div class="body">
+        <h3>Lucas Oskorep</h3>
+        <p><b>Software Engineer</b></p>
+        <p>Hi! My name is Lucas. I'm a software engineer and most recently I've been working at a startup called <b>Rokt</b>, where I work on K8s infrastructure, developing scalable Go microservices, and improving the developer experience.</p>
+        <p style="margin-bottom:0">I made this website to document and share some of the coding and 3D printing projects I've worked on, along with blog posts and my resume. Thanks for visiting!</p>
+    </div>
+    <div class="status"><span>/home/lucas/about.txt</span><span>Lucas Oskorep</span></div>
+</div>
+
+<!-- APP 2: PROJECTS -->
+<div class="win active" id="w-projects" style="left:580px; top:42px; width:710px; z-index:25;">
+    <div class="tb">
+        <svg viewBox="0 0 16 16"><path d="M1 3h5l1 2h8v9H1Z" fill="#ffcc00" stroke="#000"/></svg>
+        <span class="t-label">Projects — /home/lucas/projects</span>
+        <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span><span><a href="{{ SITEURL }}/pages/code-projects.html" data-nav="{{ SITEURL }}/pages/code-projects.html" style="color:inherit;text-decoration:none"><u>A</u>ll Projects Page →</a></span></div>
+    <div class="body">
+        <table class="filelist">
+            <tr><th>Project</th><th>Stack</th><th>Summary</th></tr>
+            <tr data-nav="{{ SITEURL }}/pi-k8s-cluster.html"><td><b>pi-k8s-cluster</b><span class="tag">k3s</span></td><td>Pi 4s &amp; 5s</td><td>At-home Raspberry Pi Kubernetes cluster</td></tr>
+            <tr data-nav="{{ SITEURL }}/macropad-os.html"><td><b>macropad-os</b><span class="tag">Firmware</span></td><td>Rust / Python</td><td>Firmware + companion app for custom macro pad</td></tr>
+            <tr data-nav="{{ SITEURL }}/tensordex.html"><td><b>tensordex</b><span class="tag">Edge ML</span></td><td>TFLite</td><td>3D-printed robotic hand for gesture ML</td></tr>
+            <tr data-nav="{{ SITEURL }}/kano-smartwand-async.html"><td><b>kano-smartwand-async</b><span class="tag">BLE</span></td><td>Async Python</td><td>Async client for Kano motion wands</td></tr>
+            <tr data-nav="{{ SITEURL }}/pi-calendar-sign.html"><td><b>pi-calendar-sign</b><span class="tag">E-Ink</span></td><td>Raspberry Pi</td><td>Wall-mounted e-ink calendar display</td></tr>
+            <tr data-nav="{{ SITEURL }}/pi-mta-sign.html"><td><b>pi-mta-sign</b><span class="tag">Transit</span></td><td>GTFS-RT</td><td>Real-time NYC subway arrival sign</td></tr>
+            <tr data-nav="{{ SITEURL }}/python-audio-recorder.html"><td><b>python-audio-recorder</b></td><td>Python</td><td>Multi-device audio capture utility</td></tr>
+            <tr data-nav="{{ SITEURL }}/android-draw.html"><td><b>android-draw</b></td><td>Android</td><td>Touch canvas drawing application</td></tr>
+        </table>
+        <div class="preview-strip">
+            <p>Click any project row above to open its writeup, or view the full index:</p>
+            <a class="p-btn" href="{{ SITEURL }}/pages/code-projects.html" data-nav="{{ SITEURL }}/pages/code-projects.html" style="font-weight:700">↗ All Projects</a>
+        </div>
+    </div>
+    <div class="status"><span>8 projects</span><span>Click any row to open</span></div>
+</div>
+
+<!-- APP 3: TERMINAL — SOCIAL LINKS -->
+<div class="win" id="w-term" style="left:112px; top:360px; width:455px; height:265px; z-index:22;">
+    <div class="tb">
+        <svg viewBox="0 0 16 16"><rect x="1" y="2" width="14" height="12" fill="#000" stroke="#fff"/><text x="3" y="11" fill="#33ff78" font-family="monospace" font-size="8">$</text></svg>
+        <span class="t-label">gnome-terminal — Links.sh</span>
+        <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+    </div>
+    <div class="body plain">
+<pre class="term"><b>lucas@linux</b>:~$ whoami --links
+<b>github</b>   → <a href="https://github.com/lucasoskorep" target="_blank" rel="noopener">github.com/lucasoskorep</a>
+<b>gitlab</b>   → <a href="https://gitlab.com/lucasoskorep" target="_blank" rel="noopener">gitlab.com/lucasoskorep</a>
+<b>gitea</b>    → <a href="https://gitea.chaosdev.gay/lucasoskorep" target="_blank" rel="noopener">gitea.chaosdev.gay/lucasoskorep</a>
+<b>last.fm</b>  → <a href="https://www.last.fm/user/chaos2theory" target="_blank" rel="noopener">last.fm/user/chaos2theory</a>
+<b>linkedin</b> → <a href="https://www.linkedin.com/in/lucas-oskorep/" target="_blank" rel="noopener">linkedin.com/in/lucas-oskorep</a>
+
+<b>lucas@linux</b>:~$ ls ~/sections
+<a href="#projects" data-open="projects">projects/</a>  <a href="#blog" data-open="blog">blog/</a>  <a href="#models" data-open="models">3d-prints/</a>  <a href="#resume" data-open="resume">resume.sh</a>
+<b>lucas@linux</b>:~$ <span class="c">█</span></pre>
+    </div>
+</div>
+
+<!-- APP 4: 3D PRINTS -->
+<div class="win hidden" id="w-models" style="left:580px; top:95px; width:560px; z-index:20;">
+    <div class="tb">
+        <svg viewBox="0 0 16 16"><polygon points="8,1 15,5 15,11 8,15 1,11 1,5" fill="#55ffff" stroke="#000"/></svg>
+        <span class="t-label">3D Prints — /home/lucas/prints</span>
+        <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span><span><a href="{{ SITEURL }}/pages/3d-printing.html" data-nav="{{ SITEURL }}/pages/3d-printing.html" style="color:inherit;text-decoration:none"><u>A</u>ll 3D Prints Page →</a></span></div>
+    <div class="body">
+        <table class="filelist">
+            <tr><th>Model File</th><th>Category</th><th>Notes</th></tr>
+            <tr data-nav="{{ SITEURL }}/raspberry-pi-cluster-case.html"><td><b>raspberry-pi-cluster-case.stl</b></td><td>Enclosure</td><td>Stacked, vented Pi rack</td></tr>
+            <tr data-nav="{{ SITEURL }}/nvidia-30xx-12-pin-cable-comb.html"><td><b>nvidia-12pin-cable-comb.stl</b></td><td>PC Mod</td><td>GPU power cable organizer</td></tr>
+            <tr data-nav="{{ SITEURL }}/5-row-mobile-device-stand.html"><td><b>5-row-device-stand.stl</b></td><td>Desk</td><td>5-slot charging stand</td></tr>
+            <tr data-nav="{{ SITEURL }}/prusa-lak-spool-holder.html"><td><b>prusa-spool-holder.stl</b></td><td>Printer</td><td>Enclosure filament holder</td></tr>
+            <tr data-nav="{{ SITEURL }}/level-1-techs-kvm-table-mount.html"><td><b>kvm-table-mount.stl</b></td><td>Mount</td><td>Under-desk KVM bracket</td></tr>
+            <tr data-nav="{{ SITEURL }}/elephant-pot.html"><td><b>elephant-plant-pot.stl</b></td><td>Planter</td><td>Geometric self-draining pot</td></tr>
+            <tr data-nav="{{ SITEURL }}/valve-index-lens-holder.html"><td><b>valve-index-lens-holder.stl</b></td><td>VR</td><td>Prescription lens adapter</td></tr>
+            <tr data-nav="{{ SITEURL }}/intel-82599-10-gb-dual-port-network-card-pcie-slot.html"><td><b>intel-10g-nic-slot.stl</b></td><td>Server</td><td>Dual-port 10GbE PCIe bracket</td></tr>
+            <tr data-nav="{{ SITEURL }}/honeywell-fan-holder.html"><td><b>honeywell-fan-holder.stl</b></td><td>Mount</td><td>Custom fan holder bracket</td></tr>
+        </table>
+        <div class="preview-strip">
+            <p>Click any STL model row to view photos &amp; print details:</p>
+            <a class="p-btn" href="{{ SITEURL }}/pages/3d-printing.html" data-nav="{{ SITEURL }}/pages/3d-printing.html" style="font-weight:700">↗ All 3D Prints</a>
+        </div>
+    </div>
+    <div class="status"><span>9 STL models</span><span>/home/lucas/prints</span></div>
+</div>
+
+<!-- APP 5: BLOG -->
+<div class="win hidden" id="w-blog" style="left:260px; top:120px; width:470px; z-index:19;">
+    <div class="tb">
+        <svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000"/><line x1="4" y1="5" x2="12" y2="5" stroke="#183661" stroke-width="2"/></svg>
+        <span class="t-label">Blog — /home/lucas/blog</span>
+        <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+    </div>
+    <div class="body">
+        <h3><a href="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" data-nav="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html">Adding Yubikey as Passwordless Sudo on Arch Linux</a></h3>
+        <p>Configuring <code>pam_u2f</code> on Arch Linux so a physical touch on your YubiKey authenticates <code>sudo</code> commands in the terminal.<span class="tag">Dec 2023</span></p>
+        <div class="preview-strip">
+            <p>Read the full guide and PAM configuration:</p>
+            <a class="p-btn" href="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" data-nav="{{ SITEURL }}/adding-yubikey-as-passwordless-sudo-on-arch-linux.html" style="font-weight:700">↗ Read Blog Post</a>
+        </div>
+    </div>
+    <div class="status"><span>1 post</span><span>/home/lucas/blog</span></div>
+</div>
+
+<!-- APP 6: RECIPES -->
+<div class="win hidden" id="w-recipes" style="left:560px; top:140px; width:660px; z-index:23;">
+    <div class="tb">
+        <svg viewBox="0 0 16 16"><rect x="2" y="6" width="12" height="8" fill="#ff9933" stroke="#000"/><line x1="1" y1="6" x2="15" y2="6" stroke="#000" stroke-width="2"/></svg>
+        <span class="t-label">(Secret...Recipes) — /home/lucas/recipes</span>
+        <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+    </div>
+    <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span><span id="recipeResetBtn"><u>A</u>ll Recipes</span></div>
+    <div class="body" id="recipesBody">
+        <div id="recipesListWrap">
+            <table class="filelist">
+                <tr><th>Recipe</th><th>Category / Time</th><th>Summary</th></tr>
+                <tr data-recipe="pizza"><td><b>cast-iron-pan-pizza</b><span class="tag">Dinner</span></td><td>Overnight · 14m Bake</td><td>No-knead skillet pizza with caramelized lacy cheese edges</td></tr>
+                <tr data-recipe="noodles"><td><b>garlic-chili-crisp-noodles</b><span class="tag">Quick</span></td><td>15m · Stovetop</td><td>Wide wheat noodles tossed in sizzling garlic, chili &amp; black vinegar</td></tr>
+                <tr data-recipe="bolognese"><td><b>sunday-bolognese</b><span class="tag">Pasta</span></td><td>3.5h · Dutch Oven</td><td>Slow-simmered beef &amp; pork ragù with soffritto, white wine &amp; milk</td></tr>
+                <tr data-recipe="cookies"><td><b>brown-butter-cookies</b><span class="tag">Baking</span></td><td>30m · 24h Chill</td><td>Toasted milk solids, chopped 70% dark chocolate &amp; flaky sea salt</td></tr>
+            </table>
+            <div class="preview-strip">
+                <p>Click any recipe row above to view its ingredients &amp; instructions.</p>
+            </div>
+        </div>
+        <div id="recipeDetailWrap" style="display:none"></div>
+    </div>
+    <div class="status"><span>4 recipes</span><span>/home/lucas/recipes</span></div>
+</div>
+
+<!-- APP 7: RESUME -->
+<div class="win hidden" id="w-resume" style="left:320px; top:90px; width:450px; z-index:18;">
+    <div class="tb">
+        <svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#ffffcc" stroke="#000"/><line x1="4" y1="5" x2="12" y2="5" stroke="#000"/></svg>
+        <span class="t-label">resume.sh — Document Viewer</span>
+        <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+    </div>
+    <div class="body">
+        <h3>Lucas Oskorep — Software Engineer</h3>
+        <p><b>Experience:</b> Software Engineer at <b>Rokt</b> — working on Kubernetes infrastructure, scalable Go microservices, and developer experience.</p>
+        <p><b>Skills:</b> Go, Kubernetes, Python, Linux, Docker, CI/CD, Embedded Firmware, 3D Printing &amp; CAD.</p>
+        <div class="preview-strip">
+            <p>View full resume page:</p>
+            <a class="p-btn" href="{{ SITEURL }}/pages/resume.html" data-nav="{{ SITEURL }}/pages/resume.html" style="font-weight:700">↗ Open Resume Page</a>
+        </div>
+    </div>
+    <div class="status"><span>/home/lucas/resume.sh</span><span>Read-only</span></div>
+</div>
+
+<!-- Bottom-Right Secret Recipes Icon (not opened by default) -->
+<div class="d-icon secret-icon" data-open="recipes">
+    <div class="glyph">
+        <svg viewBox="0 0 32 32"><path d="M5 14h22l-2 13H7Z" fill="#ff9933" stroke="#000" stroke-width="1.5"/><line x1="3" y1="14" x2="29" y2="14" stroke="#000" stroke-width="2"/><path d="M11 10V5M16 10V5M21 10V5" stroke="#7cc4ff" stroke-width="1.5"/></svg>
+    </div>
+    <span>(Secret...Recipes)</span>
+</div>
