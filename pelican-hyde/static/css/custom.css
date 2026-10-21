@@ -392,7 +392,14 @@ td.code .highlight { border: 1px solid var(--gtk-hi); padding: .75rem .9rem; }
 
   .desktop {
     position: relative; top: auto; left: auto; bottom: auto;
-    flex-direction: row; width: 100%; height: auto; padding: 6px; z-index: 10;
+    flex-direction: row; flex-wrap: nowrap; gap: 2px;
+    width: 100%; height: auto; padding: 6px 4px; z-index: 10;
+  }
+  body.is-desktop .desktop .d-icon { width: auto; flex: 1 1 0; min-width: 0; }
+  body.is-desktop .desktop .d-icon .glyph { width: 40px; height: 36px; }
+  body.is-desktop .desktop .d-icon svg { width: 26px; height: 26px; }
+  body.is-desktop .desktop .d-icon span {
+    font-size: 9.5px; padding: 1px 2px; overflow-wrap: anywhere;
   }
   body.is-workspace-2 .desktop {
     justify-content: center;
