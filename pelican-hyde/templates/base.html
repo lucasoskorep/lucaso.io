@@ -45,40 +45,37 @@
 <!-- Animated Starfield Background -->
 <canvas class="desktop-canvas" id="demo-canvas"></canvas>
 
-<!-- Unified Top GNOME 1.x Panel (Foot Menu + Workspace Pager + Open Window Tasks + Centered Motto + Controls + Clock) -->
+<!-- Unified Top Panel (Apps Menu + Workspace Pager + Open Window Tasks + Centered Motto + Controls + Clock) -->
 <header class="top-panel">
     <span class="top-motto"><i>dEvOpS iS a mEaNiNgFuL tErM</i></span>
-    <div class="panel-row-top">
-        <div class="panel-grip"></div>
-        <button class="foot-btn pixel" id="startBtn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#7cc4ff"><ellipse cx="7" cy="6" rx="2" ry="2.6"/><ellipse cx="12" cy="4.5" rx="1.8" ry="2.5"/><ellipse cx="16.5" cy="5.5" rx="1.7" ry="2.2"/><ellipse cx="20" cy="8.5" rx="1.5" ry="2"/><path d="M12 9.5c-4.2 0-7 3-6.5 6.8.4 3 3.2 4.7 6 4.7 2.2 0 4.2-1.1 5-3 .6-1.4.2-2.6-.8-3.4-1-.8-1.5-1.6-.7-2.8.5-.8-.8-2.3-3-2.3z"/></svg>
-            Apps
-        </button>
-        <div class="p-sep"></div>
+    <div class="panel-grip"></div>
+    <button class="foot-btn pixel" id="startBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#7cc4ff"><ellipse cx="7" cy="6" rx="2" ry="2.6"/><ellipse cx="12" cy="4.5" rx="1.8" ry="2.5"/><ellipse cx="16.5" cy="5.5" rx="1.7" ry="2.2"/><ellipse cx="20" cy="8.5" rx="1.5" ry="2"/><path d="M12 9.5c-4.2 0-7 3-6.5 6.8.4 3 3.2 4.7 6 4.7 2.2 0 4.2-1.1 5-3 .6-1.4.2-2.6-.8-3.4-1-.8-1.5-1.6-.7-2.8.5-.8-.8-2.3-3-2.3z"/></svg>
+        Apps
+    </button>
+    <div class="p-sep" id="pSepStart"></div>
 
-        <!-- GNOME 1.4 Workspace Pager -->
-        <div class="ws-pager" aria-label="Workspaces">
-            {% block workspace_pager %}
-            <a class="ws-btn" href="{{ SITEURL }}/" data-back-desktop title="Switch to Workspace 1 (Main Desktop)">1:Desktop</a>
-            <span class="ws-btn on" title="Workspace 2 (Document Viewer)">2:Viewer</span>
-            {% endblock %}
-        </div>
-        <div class="clock mono" id="clock">12:00</div>
+    <!-- Workspace Pager -->
+    <div class="ws-pager" id="wsPager" aria-label="Workspaces">
+        {% block workspace_pager %}
+        <a class="ws-btn" href="{{ SITEURL }}/" data-back-desktop title="Switch to Workspace 1 (Main Desktop)">1:Desktop</a>
+        <span class="ws-btn on" title="Workspace 2 (Document Viewer)">2:Viewer</span>
+        {% endblock %}
     </div>
+    <div class="p-sep" id="wsSep"></div>
 
-    <div class="panel-row-sub">
-        <div class="tasks" id="tasks">{% block static_tasks %}<span class="task on">{% block taskname %}Document{% endblock %}</span>{% endblock %}</div>
-        <div class="top-right">
-            {% block top_right_controls %}
-            <a class="p-btn" href="{{ SITEURL }}/" data-back-desktop>← Back to Desktop</a>
-            {% endblock %}
-        </div>
+    <div class="tasks" id="tasks">{% block static_tasks %}<span class="task on">{% block taskname %}Document{% endblock %}</span>{% endblock %}</div>
+    <div class="top-right">
+        {% block top_right_controls %}
+        <a class="p-btn" href="{{ SITEURL }}/" data-back-desktop>← Back to Desktop</a>
+        {% endblock %}
+        <div class="clock mono" id="clock">12:00</div>
     </div>
 </header>
 
-<!-- GNOME Foot Menu (drops down from top-left Apps button) -->
+<!-- Applications Menu (drops down from top-left Apps button) -->
 <div class="startmenu" id="startmenu">
-    <div class="side">GNOME 1.4</div>
+    <div class="side">lucaso.io</div>
     <ul>
         <li data-open="about"><span>About Me</span><small>intro</small></li>
         <li data-open="projects"><span>Projects</span><small>8</small></li>
