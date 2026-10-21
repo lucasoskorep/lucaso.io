@@ -20,7 +20,7 @@
                 <tr><th>Title</th><th>Modified</th></tr>
                 {% for article in articles %}{% if article.category == 'blog' %}
                     <tr data-nav="{{ SITEURL }}/{{ article.url }}">
-                        <td><b>{{ article.title }}</b><span class="tag">md</span></td>
+                        <td><b>{{ article.title }}</b></td>
                         <td>{{ article.locale_date }}</td>
                     </tr>
                 {% endif %}{% endfor %}

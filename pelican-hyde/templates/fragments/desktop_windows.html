@@ -30,7 +30,7 @@
             <tr><th>Project</th><th>Description</th></tr>
             {% for project in projects %}
             <tr data-nav="{{ SITEURL }}/{{ project.url }}">
-                <td><b>{{ project.title }}</b><span class="tag">dir</span></td>
+                <td><b>{{ project.title }}</b></td>
                 <td>{{ project.summary | striptags }}</td>
             </tr>
             {% endfor %}
@@ -51,7 +51,7 @@
             <tr><th>Title</th><th>Modified</th></tr>
             {% for post in posts %}
             <tr data-nav="{{ SITEURL }}/{{ post.url }}">
-                <td><b>{{ post.title }}</b><span class="tag">md</span></td>
+                <td><b>{{ post.title }}</b></td>
                 <td>{{ post.locale_date }}</td>
             </tr>
             {% endfor %}
@@ -73,7 +73,7 @@
             <tr><th>Model File</th><th>Download</th></tr>
             {% for model in models %}
             <tr>
-                <td data-nav="{{ SITEURL }}/{{ model.url }}"><b>{{ model.title }}</b><span class="tag">stl</span></td>
+                <td data-nav="{{ SITEURL }}/{{ model.url }}"><b>{{ model.title }}</b></td>
                 <td>{% if model.printables %}<a class="tag dl" href="{{ model.printables }}" target="_blank" rel="noopener">Printables ↗</a>{% endif %}</td>
             </tr>
             {% endfor %}

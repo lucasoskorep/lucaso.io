@@ -21,7 +21,7 @@
                 {% for article in articles %}
                     {% if article.category == 'projects' %}
                         <tr data-nav="{{ SITEURL }}/{{ article.url }}">
-                            <td><b>{{ article.title }}</b><span class="tag">dir</span></td>
+                            <td><b>{{ article.title }}</b></td>
                             <td>{{ article.summary | striptags }}</td>
                         </tr>
                     {% endif %}
