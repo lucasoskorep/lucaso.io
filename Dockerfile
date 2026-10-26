@@ -1,4 +1,4 @@
-FROM ghcr.io/jdx/mise:2026.10.4-debian AS builder
+FROM ghcr.io/jdx/mise:2026.10.19-debian AS builder
 LABEL authors="lucasoskorep"
 
 WORKDIR /app
