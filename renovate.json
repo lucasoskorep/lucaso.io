@@ -6,7 +6,7 @@
       "matchManagers": ["mise"],
       "matchPackageNames": ["python"],
       "enabled": false,
-      "description": "Python version is pinned in .python-version and mise.toml; watchfiles wheels only exist for cp312/cp313, so unattended major bumps break the Docker build."
+      "description": "Python version is upgraded deliberately via .python-version + mise.toml, so renovate should not bump the mise python tool on its own."
     }
   ]
 }

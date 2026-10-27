@@ -8,8 +8,8 @@ COPY mise.toml ./
 RUN mise trust && mise install
 
 # Pull python dependencies with uv (cached until the lockfile changes).
-# .python-version is the single source of truth for the interpreter; watchfiles
-# ships wheels only for cp312/cp313, so bumping must stay in sync with it.
+# .python-version is the single source of truth for the interpreter; keep
+# mise.toml's python in sync with it.
 COPY pyproject.toml uv.lock README.md .python-version ./
 RUN uv sync --frozen
 
