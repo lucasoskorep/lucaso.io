@@ -8,8 +8,10 @@ COPY mise.toml ./
 RUN mise trust && mise install
 
 # Pull python dependencies with uv (cached until the lockfile changes)
-COPY pyproject.toml uv.lock README.md ./
-RUN uv sync --frozen
+# .python-version pins uv to 3.12; without it uv grabs the latest managed
+# CPython (3.15), which has no watchfiles wheels and forces a Rust build.
+COPY pyproject.toml uv.lock README.md .python-version ./
+RUN uv sync --frozen --python 3.12
 
 COPY . .
 RUN mise run publish
