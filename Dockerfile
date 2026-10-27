@@ -7,11 +7,11 @@ WORKDIR /app
 COPY mise.toml ./
 RUN mise trust && mise install
 
-# Pull python dependencies with uv (cached until the lockfile changes)
-# .python-version pins uv to 3.12; without it uv grabs the latest managed
-# CPython (3.15), which has no watchfiles wheels and forces a Rust build.
+# Pull python dependencies with uv (cached until the lockfile changes).
+# .python-version is the single source of truth for the interpreter; watchfiles
+# ships wheels only for cp312/cp313, so bumping must stay in sync with it.
 COPY pyproject.toml uv.lock README.md .python-version ./
-RUN uv sync --frozen --python 3.12
+RUN uv sync --frozen
 
 COPY . .
 RUN mise run publish
