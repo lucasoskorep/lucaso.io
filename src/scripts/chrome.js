@@ -319,8 +319,9 @@
       w.style.top = (padT + 14) + "px";
       w.style.width = Math.min(760, availW - 40) + "px";
     } else {
-      const leftW = Math.max(380, Math.floor(availW * 0.37));
-      const rightW = availW - leftW - gap;
+      const usableW = availW - gap;
+      const leftW = Math.max(360, Math.floor(usableW * 0.45));
+      const rightW = usableW - leftW;
       let yL = padT, yR = padT;
       const cols = [];
       openIds.forEach(function (id) {
