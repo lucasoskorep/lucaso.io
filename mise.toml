@@ -1,56 +1,42 @@
 [tools]
-python = "3.15.2"
-uv = "0.13.5"
-
-[env]
-_.python.venv = { path = ".venv", create = true }
+node = "latest"
+npm = "latest"
 
 # --- Site building -----------------------------------------------------------
 
 [tasks.setup]
-description = "Install/refresh python dependencies with uv"
-run = "uv sync"
+description = "Install dependencies"
+run = "npm install"
 
 [tasks.build]
 alias = "html"
 description = "Generate the static site into output/"
-run = "uv run pelican content -o output -s pelicanconf.py ${PELICANOPTS:-}"
+run = "npm run build"
 
 [tasks.publish]
-description = "Generate the site using production settings (publishconf.py)"
-run = "uv run pelican content -o output -s publishconf.py ${PELICANOPTS:-}"
+description = "Generate production build into output/"
+run = "npm run build"
 
 [tasks.clean]
 description = "Remove the generated output directory"
 run = "rm -rf output"
 
-[tasks.regenerate]
-description = "Regenerate files upon modification"
-run = "uv run pelican -r content -o output -s pelicanconf.py ${PELICANOPTS:-}"
-
 # --- Local dev server --------------------------------------------------------
 
-[tasks.serve]
-description = "Serve the site (mise run serve --port 1234)"
-run = "uv run pelican -l content -o output -s pelicanconf.py -p {{option(name='port', default='8000')}} ${PELICANOPTS:-}"
+[tasks.dev]
+alias = ["serve", "devserver"]
+description = "Run Astro dev server (mise run dev)"
+run = "npm run dev"
 
-[tasks.serve-global]
-description = "Serve to other machines (mise run serve-global --server 0.0.0.0)"
-run = "uv run pelican -l content -o output -s pelicanconf.py -b {{option(name='server', default='0.0.0.0')}} ${PELICANOPTS:-}"
-
-[tasks.devserver]
-description = "Serve and regenerate together (mise run devserver --port 1234)"
-run = "uv run pelican -lr content -o output -s pelicanconf.py -p {{option(name='port', default='8000')}} ${PELICANOPTS:-}"
-
-[tasks.devserver-global]
-description = "Regenerate and serve on 0.0.0.0"
-run = "uv run pelican -lr content -o output -s pelicanconf.py -b 0.0.0.0 ${PELICANOPTS:-}"
+[tasks.preview]
+description = "Preview built site in output/"
+run = "npm run preview"
 
 # --- Utilities ---------------------------------------------------------------
 
 [tasks.update-projects]
-description = "Inject project READMEs into content/articles/projects"
-run = "uv run python project-updater.py"
+description = "Inject project READMEs into src/content/projects"
+run = "node scripts/update-projects.mjs"
 
 # --- Containers (podman) -------------------------------------------------------
 

@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DesktopIcons from '../components/DesktopIcons.astro';
+import AboutWindow from '../components/windows/AboutWindow.astro';
+import ProjectsWindow from '../components/windows/ProjectsWindow.astro';
+import BlogWindow from '../components/windows/BlogWindow.astro';
+import ModelsWindow from '../components/windows/ModelsWindow.astro';
+import TerminalWindow from '../components/windows/TerminalWindow.astro';
+import RecipesWindow from '../components/windows/RecipesWindow.astro';
+
+const allProjects = await getCollection('projects', ({ data }) => data.status !== 'hidden');
+const allPosts = await getCollection('blog', ({ data }) => data.status !== 'hidden');
+const allModels = await getCollection('models', ({ data }) => data.status !== 'hidden');
+const allRecipes = await getCollection('recipes', ({ data }) => data.status !== 'hidden');
+
+const counts = {
+  projects: allProjects.length,
+  blog: allPosts.length,
+  models: allModels.length,
+};
+---
+
+<BaseLayout isDesktop={true} counts={counts}>
+  <DesktopIcons />
+  <AboutWindow />
+  <ProjectsWindow projects={allProjects} />
+  <BlogWindow posts={allPosts} />
+  <ModelsWindow models={allModels} />
+  <TerminalWindow />
+  <RecipesWindow recipes={allRecipes} />
+
+  <!-- Bottom-Right Secret Recipes Icon (placed after all windows so on mobile it sits at the bottom of the page) -->
+  <div class="d-icon secret-icon" data-open="recipes">
+    <div class="glyph">
+      <svg viewBox="0 0 32 32">
+        <path d="M5 14h22l-2 13H7Z" fill="#ff9933" stroke="#000" stroke-width="1.5"></path>
+        <line x1="3" y1="14" x2="29" y2="14" stroke="#000" stroke-width="2"></line>
+        <path d="M11 10V5M16 10V5M21 10V5" stroke="#7cc4ff" stroke-width="1.5"></path>
+      </svg>
+    </div>
+    <span>(Secret...Recipes)</span>
+  </div>
+</BaseLayout>

@@ -3,13 +3,13 @@ LABEL authors="lucasoskorep"
 
 WORKDIR /app
 
-# Install the project's tools (python, uv) from mise.toml
+# Install tools from mise.toml (node, npm)
 COPY mise.toml ./
 RUN mise trust && mise install
 
-# Pull python dependencies with uv (cached until the lockfile changes)
-COPY pyproject.toml uv.lock README.md .python-version ./
-RUN uv sync --frozen
+# Install dependencies (cached until package files change)
+COPY package.json package-lock.json* ./
+RUN npm install
 
 COPY . .
 RUN mise run publish

@@ -1,0 +1,43 @@
+---
+interface Props {
+  posts: Array<{
+    data: {
+      title: string;
+      slug: string;
+      date?: string | Date;
+    };
+  }>;
+}
+
+const { posts } = Astro.props;
+
+function formatDate(dateVal?: string | Date) {
+  if (!dateVal) return '';
+  const d = typeof dateVal === 'string' ? new Date(dateVal.replace(/\//g, '-')) : dateVal;
+  if (isNaN(d.getTime())) return String(dateVal);
+  return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+}
+---
+<div class="win hidden" id="w-blog" style="left:260px; top:120px; width:470px; z-index:19;">
+  <div class="tb">
+    <svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000"/><line x1="4" y1="5" x2="12" y2="5" stroke="#183661" stroke-width="2"/></svg>
+    <span class="t-label">Blog — /home/lucas/blog</span>
+    <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+  </div>
+  <div class="body">
+    <table class="filelist">
+      <thead>
+        <tr><th>Title</th><th>Modified</th></tr>
+      </thead>
+      <tbody>
+        {posts.map((post) => (
+          <tr data-nav={`/${post.data.slug}.html`}>
+            <td><b>{post.data.title}</b></td>
+            <td>{formatDate(post.data.date)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div class="status"><span>blog posts</span><span>Click any row to read</span></div>
+</div>

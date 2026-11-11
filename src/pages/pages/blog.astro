@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = await getCollection('blog', ({ data }) => data.status !== 'hidden');
+const projects = await getCollection('projects', ({ data }) => data.status !== 'hidden');
+const models = await getCollection('models', ({ data }) => data.status !== 'hidden');
+
+const counts = {
+  projects: projects.length,
+  blog: posts.length,
+  models: models.length,
+};
+
+function formatDate(dateVal?: string | Date) {
+  if (!dateVal) return '';
+  const d = typeof dateVal === 'string' ? new Date(dateVal.replace(/\//g, '-')) : dateVal;
+  if (isNaN(d.getTime())) return String(dateVal);
+  return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+}
+---
+
+<BaseLayout title="Blog" isDesktop={false} taskName="Blog" counts={counts}>
+  <main class="subpage-desk">
+    <section class="win active subpage-win" id="w-subpage">
+      <div class="tb">
+        <svg viewBox="0 0 16 16">
+          <rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000"></rect>
+          <line x1="4" y1="5" x2="12" y2="5" stroke="#000"></line>
+          <line x1="4" y1="8" x2="12" y2="8" stroke="#000"></line>
+          <line x1="4" y1="11" x2="9" y2="11" stroke="#000"></line>
+        </svg>
+        <span class="t-label">Blog — /home/lucas/blog (Workspace 2)</span>
+        <div class="btns">
+          <button data-min title="Shade / Minimize">▁</button>
+          <button data-max title="Maximize">□</button>
+          <button data-close-subpage title="Close & Return to Workspace 1 (Desktop)">✕</button>
+        </div>
+      </div>
+      <div class="menubar viewer-bar">
+        <a class="p-btn" href="/" data-back-desktop>← Back to Workspace 1 (Desktop)</a>
+        <span class="viewer-path">/home/lucas/blog</span>
+      </div>
+      <div class="body">
+        <table class="filelist">
+          <thead>
+            <tr><th>Title</th><th>Modified</th></tr>
+          </thead>
+          <tbody>
+            {posts.map((post) => (
+              <tr data-nav={`/${post.data.slug}.html`}>
+                <td><b>{post.data.title}</b></td>
+                <td>{formatDate(post.data.date)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="status"><span>blog posts</span><span>Click any row to read</span></div>
+    </section>
+  </main>
+
+  <div class="desktop" id="desk">
+    <a class="d-icon" href="/" data-back-desktop>
+      <div class="glyph">
+        <svg viewBox="0 0 32 32">
+          <rect x="4" y="4" width="24" height="17" fill="#c0c0c0" stroke="#000" stroke-width="1.5"></rect>
+          <rect x="6" y="6" width="20" height="13" fill="#183661"></rect>
+          <path d="M18 8.5L11.5 12.5 18 16.5V14h5v-3h-5V8.5z" fill="#ffff55"></path>
+          <rect x="6" y="23" width="20" height="5" fill="#c0c0c0" stroke="#000" stroke-width="1.5"></rect>
+        </svg>
+      </div>
+      <span>Back to Desktop</span>
+    </a>
+  </div>
+</BaseLayout>

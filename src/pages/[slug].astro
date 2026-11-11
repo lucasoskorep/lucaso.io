@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const [blog, projects, models, recipes] = await Promise.all([
+    getCollection('blog'),
+    getCollection('projects'),
+    getCollection('models'),
+    getCollection('recipes'),
+  ]);
+
+  const allEntries = [
+    ...blog.map((e) => ({ ...e, collectionType: 'blog' })),
+    ...projects.map((e) => ({ ...e, collectionType: 'projects' })),
+    ...models.map((e) => ({ ...e, collectionType: 'models' })),
+    ...recipes.map((e) => ({ ...e, collectionType: 'recipes' })),
+  ];
+
+  return allEntries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const counts = {
+  projects: (await getCollection('projects', ({ data }) => data.status !== 'hidden')).length,
+  blog: (await getCollection('blog', ({ data }) => data.status !== 'hidden')).length,
+  models: (await getCollection('models', ({ data }) => data.status !== 'hidden')).length,
+};
+---
+
+<ArticleLayout
+  title={entry.data.title}
+  slug={entry.data.slug}
+  date={entry.data.date}
+  category={entry.data.category || entry.collectionType}
+  tags={'tags' in entry.data && Array.isArray(entry.data.tags) ? entry.data.tags : []}
+  counts={counts}
+>
+  <Content />
+</ArticleLayout>

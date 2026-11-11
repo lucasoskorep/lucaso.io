@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="500 Server Error" isDesktop={false} taskName="500 Error">
+  <main class="subpage-desk">
+    <section class="win active subpage-win" id="w-subpage">
+      <div class="tb">
+        <svg viewBox="0 0 16 16">
+          <rect x="2" y="1" width="12" height="14" fill="#ffffcc" stroke="#000"></rect>
+          <line x1="4" y1="5" x2="12" y2="5" stroke="#000"></line>
+          <line x1="4" y1="8" x2="12" y2="8" stroke="#000"></line>
+        </svg>
+        <span class="t-label">500 Server Error — Workspace 2</span>
+        <div class="btns">
+          <button data-min title="Shade / Minimize">▁</button>
+          <button data-max title="Maximize">□</button>
+          <button data-close-subpage title="Close & Return to Workspace 1 (Desktop)">✕</button>
+        </div>
+      </div>
+      <div class="menubar viewer-bar">
+        <a class="p-btn" href="/" data-back-desktop>← Back to Workspace 1 (Desktop)</a>
+        <span class="viewer-path">/dev/null</span>
+      </div>
+      <div class="body">
+        <div class="post">
+          <h1 class="post-title">500 — Server Error</h1>
+          <div class="prose">
+            <p>Something went wrong on the server.</p>
+            <p><a href="/" data-back-desktop>← Return to Desktop</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="status"><span>/dev/null</span><span>500</span></div>
+    </section>
+  </main>
+
+  <div class="desktop" id="desk">
+    <a class="d-icon" href="/" data-back-desktop>
+      <div class="glyph">
+        <svg viewBox="0 0 32 32">
+          <rect x="4" y="4" width="24" height="17" fill="#c0c0c0" stroke="#000" stroke-width="1.5"></rect>
+          <rect x="6" y="6" width="20" height="13" fill="#183661"></rect>
+          <path d="M18 8.5L11.5 12.5 18 16.5V14h5v-3h-5V8.5z" fill="#ffff55"></path>
+          <rect x="6" y="23" width="20" height="5" fill="#c0c0c0" stroke="#000" stroke-width="1.5"></rect>
+        </svg>
+      </div>
+      <span>Back to Desktop</span>
+    </a>
+  </div>
+</BaseLayout>
