@@ -32,6 +32,12 @@ run = "npm run dev"
 description = "Preview built site in output/"
 run = "npm run preview"
 
+# --- Utilities ---------------------------------------------------------------
+
+[tasks.update-projects]
+description = "Inject project READMEs into src/content/projects"
+run = "node scripts/update-projects.mjs"
+
 # --- Containers (podman) -------------------------------------------------------
 
 [tasks."container:build"]

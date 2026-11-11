@@ -4,7 +4,7 @@ import Giscus from '../components/Giscus.astro';
 
 interface Props {
   title: string;
-  date?: string;
+  date?: string | Date;
   category?: string;
   slug: string;
   tags?: string[];
@@ -26,10 +26,10 @@ const {
   counts,
 } = Astro.props;
 
-function formatDate(dateStr?: string) {
-  if (!dateStr) return '';
-  const d = new Date(dateStr.replace(/\//g, '-'));
-  if (isNaN(d.getTime())) return dateStr;
+function formatDate(dateVal?: string | Date) {
+  if (!dateVal) return '';
+  const d = typeof dateVal === 'string' ? new Date(dateVal.replace(/\//g, '-')) : dateVal;
+  if (isNaN(d.getTime())) return String(dateVal);
   return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
 }
 

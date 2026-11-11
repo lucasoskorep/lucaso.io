@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 export const collections = {
@@ -7,7 +8,7 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       slug: z.string(),
-      date: z.string().optional(),
+      date: z.string().or(z.date()).optional(),
       category: z.string().optional(),
       summary: z.string().optional(),
       status: z.string().optional(),
@@ -20,7 +21,7 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       slug: z.string(),
-      date: z.string().optional(),
+      date: z.string().or(z.date()).optional(),
       category: z.string().optional(),
       summary: z.string().optional(),
       projectStatus: z.string().optional(),
@@ -36,7 +37,7 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       slug: z.string(),
-      date: z.string().optional(),
+      date: z.string().or(z.date()).optional(),
       category: z.string().optional(),
       image: z.string().optional(),
       tags: z.array(z.string()).optional(),
@@ -50,7 +51,7 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       slug: z.string(),
-      date: z.string().optional(),
+      date: z.string().or(z.date()).optional(),
       category: z.string().optional(),
       recipeTag: z.string().optional(),
       recipeTime: z.string().optional(),
@@ -63,7 +64,7 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       slug: z.string(),
-      date: z.string().optional(),
+      date: z.string().or(z.date()).optional(),
       category: z.string().optional(),
       status: z.string().optional(),
       save_as: z.string().optional(),
