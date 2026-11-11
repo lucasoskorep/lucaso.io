@@ -161,10 +161,65 @@
     saveState();
   }
 
+  let isInitialBoot = true;
+
+  function positionNewWin(w, id) {
+    if (window.innerWidth <= 900) return;
+    const padL = 108, padT = 42, gap = 10;
+    const availW = window.innerWidth - padL - 16;
+    const availH = window.innerHeight - padT - 16;
+    const leftW = Math.max(380, Math.floor(availW * 0.37));
+    const rightW = availW - leftW - gap;
+
+    const preferRight = (id === "projects" || id === "models" || id === "recipes");
+    const col = preferRight ? "R" : "L";
+    const targetW = col === "L" ? leftW : rightW;
+    const targetLeft = col === "L" ? padL : (padL + leftW + gap);
+
+    // Find visible windows in this column
+    const colWins = [];
+    ORDER.forEach(function (otherId) {
+      if (otherId === id) return;
+      const other = win(otherId);
+      if (!other || other.classList.contains("hidden") || other.classList.contains("minned")) return;
+      const otherLeft = other.offsetLeft;
+      const inThisCol = col === "L" ? (otherLeft < padL + leftW * 0.7) : (otherLeft >= padL + leftW * 0.4);
+      if (inThisCol) colWins.push(other);
+    });
+
+    w.style.width = targetW + "px";
+    w.style.left = targetLeft + "px";
+
+    if (colWins.length === 0) {
+      w.style.top = padT + "px";
+      w.style.height = Math.min(availH, 480) + "px";
+    } else {
+      let lowestBottom = padT;
+      colWins.forEach(function (other) {
+        const bot = other.offsetTop + other.offsetHeight + gap;
+        if (bot > lowestBottom) lowestBottom = bot;
+      });
+
+      const remainingH = window.innerHeight - lowestBottom - 16;
+      if (remainingH >= 160) {
+        w.style.top = lowestBottom + "px";
+        w.style.height = Math.min(480, remainingH) + "px";
+      } else {
+        const targetH = Math.min(460, Math.max(220, Math.floor(availH * 0.5)));
+        w.style.top = Math.max(padT, window.innerHeight - targetH - 16) + "px";
+        w.style.height = targetH + "px";
+      }
+    }
+  }
+
   function openWin(id) {
     const w = win(id);
     if (!w) return;
+    const wasHidden = w.classList.contains("hidden");
     w.classList.remove("hidden", "minned");
+    if (wasHidden && !isInitialBoot) {
+      positionNewWin(w, id);
+    }
     focusWin(w);
     if (window.innerWidth <= 900) {
       w.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -449,9 +504,13 @@
 
   /* Boot Workspace 1: restore saved window state if returning from Workspace 2, otherwise open defaults */
   if (!restoreState()) {
-    ["about", "projects", "blog", "models", "term"].forEach(function (id) { openWin(id); });
+    ["about", "projects", "term"].forEach(function (id) {
+      const w = win(id);
+      if (w) w.classList.remove("hidden", "minned");
+    });
     arrangeWindows();
   }
+  isInitialBoot = false;
 
   checkPendingOpenRequest();
 })();
