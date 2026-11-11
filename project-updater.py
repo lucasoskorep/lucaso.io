@@ -10,10 +10,10 @@ def extract_content(file_path):
     """
     with open(file_path, 'r') as file:
         content = file.read()
-        gitlab_pattern = re.search(r'Gitlab: (.+)', content)
-        readme_pattern = re.search(r'UseReadme: (.+)', content)
-        gitlab_url = gitlab_pattern.group(1) if gitlab_pattern else None
-        use_readme = readme_pattern.group(1) if readme_pattern else None
+        gitlab_pattern = re.search(r'gitlab:\s*(.+)', content, re.IGNORECASE)
+        readme_pattern = re.search(r'useReadme:\s*(.+)', content, re.IGNORECASE)
+        gitlab_url = gitlab_pattern.group(1).strip() if gitlab_pattern else None
+        use_readme = readme_pattern.group(1).strip() if readme_pattern else None
     return gitlab_url, use_readme
 
 
@@ -72,5 +72,5 @@ def process_files_in_directory(directory):
 
 
 # Usage example
-directory_path = './content/articles/projects'  # Replace with the path to your directory
+directory_path = './src/content/projects' if os.path.exists('./src/content/projects') else './content/articles/projects'
 process_files_in_directory(directory_path)

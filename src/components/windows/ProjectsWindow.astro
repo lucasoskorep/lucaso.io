@@ -1,0 +1,37 @@
+---
+interface Props {
+  projects: Array<{
+    data: {
+      title: string;
+      slug: string;
+      summary?: string;
+    };
+  }>;
+}
+
+const { projects } = Astro.props;
+---
+<div class="win active" id="w-projects" style="left:580px; top:42px; width:710px; z-index:25;">
+  <div class="tb">
+    <svg viewBox="0 0 16 16"><path d="M1 3h5l1 2h8v9H1Z" fill="#ffcc00" stroke="#000"/></svg>
+    <span class="t-label">Projects — /home/lucas/projects</span>
+    <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+  </div>
+  <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span></div>
+  <div class="body">
+    <table class="filelist">
+      <thead>
+        <tr><th>Project</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        {projects.map((p) => (
+          <tr data-nav={`/${p.data.slug}.html`}>
+            <td><b>{p.data.title}</b></td>
+            <td>{p.data.summary}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div class="status"><span>{projects.length} projects</span><span>Click any row to open</span></div>
+</div>

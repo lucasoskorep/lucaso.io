@@ -67,4 +67,9 @@ output
 # Redesign mockups
 redesigns/
 
+# Node / Astro
+node_modules/
+.astro/
+dist/
+
 .idea

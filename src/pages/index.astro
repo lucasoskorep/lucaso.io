@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DesktopIcons from '../components/DesktopIcons.astro';
+import AboutWindow from '../components/windows/AboutWindow.astro';
+import ProjectsWindow from '../components/windows/ProjectsWindow.astro';
+import BlogWindow from '../components/windows/BlogWindow.astro';
+import ModelsWindow from '../components/windows/ModelsWindow.astro';
+import TerminalWindow from '../components/windows/TerminalWindow.astro';
+import RecipesWindow from '../components/windows/RecipesWindow.astro';
+
+const allProjects = await getCollection('projects', ({ data }) => data.status !== 'hidden');
+const allPosts = await getCollection('blog', ({ data }) => data.status !== 'hidden');
+const allModels = await getCollection('models', ({ data }) => data.status !== 'hidden');
+const allRecipes = await getCollection('recipes', ({ data }) => data.status !== 'hidden');
+
+const counts = {
+  projects: allProjects.length,
+  blog: allPosts.length,
+  models: allModels.length,
+};
+---
+
+<BaseLayout isDesktop={true} counts={counts}>
+  <DesktopIcons />
+  <AboutWindow />
+  <ProjectsWindow projects={allProjects} />
+  <BlogWindow posts={allPosts} />
+  <ModelsWindow models={allModels} />
+  <TerminalWindow />
+  <RecipesWindow recipes={allRecipes} />
+</BaseLayout>

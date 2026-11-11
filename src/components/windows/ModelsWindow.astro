@@ -1,0 +1,41 @@
+---
+interface Props {
+  models: Array<{
+    data: {
+      title: string;
+      slug: string;
+      printables?: string;
+    };
+  }>;
+}
+
+const { models } = Astro.props;
+---
+<div class="win hidden" id="w-models" style="left:580px; top:95px; width:560px; z-index:20;">
+  <div class="tb">
+    <svg viewBox="0 0 16 16"><polygon points="8,1 15,5 15,11 8,15 1,11 1,5" fill="#55ffff" stroke="#000"/></svg>
+    <span class="t-label">3D Prints — /home/lucas/prints</span>
+    <div class="btns"><button data-min>▁</button><button data-max>□</button><button data-close>✕</button></div>
+  </div>
+  <div class="menubar"><span><u>F</u>ile</span><span><u>V</u>iew</span></div>
+  <div class="body">
+    <table class="filelist">
+      <thead>
+        <tr><th>Model File</th><th>Download</th></tr>
+      </thead>
+      <tbody>
+        {models.map((m) => (
+          <tr>
+            <td data-nav={`/${m.data.slug}.html`}><b>{m.data.title}</b></td>
+            <td>
+              {m.data.printables && (
+                <a class="tag dl" href={m.data.printables} target="_blank" rel="noopener">Printables ↗</a>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div class="status"><span>{models.length} STL models</span><span>Click any row to open</span></div>
+</div>

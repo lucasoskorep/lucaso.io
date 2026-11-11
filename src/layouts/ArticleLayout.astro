@@ -1,0 +1,98 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Giscus from '../components/Giscus.astro';
+
+interface Props {
+  title: string;
+  date?: string;
+  category?: string;
+  slug: string;
+  tags?: string[];
+  showComments?: boolean;
+  counts?: {
+    projects: number;
+    blog: number;
+    models: number;
+  };
+}
+
+const {
+  title,
+  date,
+  category = 'articles',
+  slug,
+  tags = [],
+  showComments = true,
+  counts,
+} = Astro.props;
+
+function formatDate(dateStr?: string) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr.replace(/\//g, '-'));
+  if (isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+}
+
+const displayDate = formatDate(date);
+const filePath = `/home/lucas/${category}/${slug}`;
+---
+
+<BaseLayout title={title} isDesktop={false} taskName={title} counts={counts}>
+  <main class="subpage-desk">
+    <section class="win active subpage-win" id="w-subpage">
+      <div class="tb">
+        <svg viewBox="0 0 16 16">
+          <rect x="2" y="1" width="12" height="14" fill="#e6edf7" stroke="#000"></rect>
+          <line x1="4" y1="5" x2="12" y2="5" stroke="#183661" stroke-width="2"></line>
+          <line x1="4" y1="8" x2="12" y2="8" stroke="#000"></line>
+          <line x1="4" y1="11" x2="9" y2="11" stroke="#000"></line>
+        </svg>
+        <span class="t-label">{title} — Workspace 2</span>
+        <div class="btns">
+          <button data-min title="Shade / Minimize">▁</button>
+          <button data-max title="Maximize">□</button>
+          <button data-close-subpage title="Close & Return to Workspace 1 (Desktop)">✕</button>
+        </div>
+      </div>
+      <div class="menubar viewer-bar">
+        <a class="p-btn" href="/" data-back-desktop>← Back to Workspace 1 (Desktop)</a>
+        <span class="viewer-path">{filePath}</span>
+      </div>
+      <div class="body">
+        <article class="post">
+          <h1 class="post-title">{title}</h1>
+          <span class="post-date">{displayDate}{category && ` · ${category}`}</span>
+          {tags && tags.length > 0 && (
+            <span class="post-tags">
+              {tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </span>
+          )}
+
+          <div class="prose">
+            <slot />
+          </div>
+
+          {showComments && <Giscus />}
+        </article>
+      </div>
+      <div class="status"><span>{filePath}</span><span>{displayDate}</span></div>
+    </section>
+  </main>
+
+  <!-- Workspace 2 Desktop Shortcut Icon: Back to Desktop -->
+  <div class="desktop" id="desk">
+    <a class="d-icon" href="/" data-back-desktop>
+      <div class="glyph">
+        <svg viewBox="0 0 32 32">
+          <rect x="4" y="4" width="24" height="17" fill="#c0c0c0" stroke="#000" stroke-width="1.5"></rect>
+          <rect x="6" y="6" width="20" height="13" fill="#183661"></rect>
+          <path d="M18 8.5L11.5 12.5 18 16.5V14h5v-3h-5V8.5z" fill="#ffff55"></path>
+          <rect x="6" y="23" width="20" height="5" fill="#c0c0c0" stroke="#000" stroke-width="1.5"></rect>
+        </svg>
+      </div>
+      <span>Back to Desktop</span>
+    </a>
+  </div>
+</BaseLayout>
