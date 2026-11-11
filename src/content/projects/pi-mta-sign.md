@@ -17,14 +17,14 @@ slug: pi-mta-sign
 This project gives you a docker image that you can run locally to pull MTA data and self-host a webpage that looks very
 similar to the classic MTA Signs found in the metro.
 
-![ui-example.png](attachments/ui-example.png)
+![ui-example.png](https://gitlab.com/lucasoskorep/pi-mta-sign/-/raw/main/attachments/ui-example.png)
 
 Initially designed to run directly on a raspberry pi, it has been containerized and now runs anywhere you can install
 podman or docker!
 
 Additionally, this can be run without the frontend in case you just wanted a slightly more sane way to query MTA's data
 sources compared to their stock APIs.  Swagger is hosted at /swagger
-![swagger.png](attachments/swagger.png)
+![swagger.png](https://gitlab.com/lucasoskorep/pi-mta-sign/-/raw/main/attachments/swagger.png)
 
 ## Features
 

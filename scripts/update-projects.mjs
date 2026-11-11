@@ -37,8 +37,16 @@ async function processFile(filePath) {
     const anchor = '[//]: # (anchor)';
     const anchorIdx = content.indexOf(anchor);
     if (anchorIdx !== -1) {
+      // Convert relative markdown image links to absolute GitLab URLs so Astro doesn't fail resolving local files
+      const fixedReadme = readme.replace(
+        /!\[(.*?)\]\((?!https?:\/\/|\/)(.*?)\)/g,
+        (match, alt, relPath) => {
+          const cleanPath = relPath.replace(/^\.\//, '');
+          return `![${alt}](${gitlabUrl}/-/raw/main/${cleanPath})`;
+        }
+      );
       const before = content.slice(0, anchorIdx + anchor.length);
-      fs.writeFileSync(filePath, `${before}\n\n${readme.trim()}\n`);
+      fs.writeFileSync(filePath, `${before}\n\n${fixedReadme.trim()}\n`);
       console.log(`Updated ${filePath}`);
     }
   }
