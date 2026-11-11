@@ -83,6 +83,13 @@ const pageTitle = title === 'Lucas Oskorep' ? 'Lucas Oskorep' : `${title} — Lu
     </div>
     <div class="p-sep" id="wsSep"></div>
 
+    {!isDesktop && (
+      <>
+        <a class="p-btn" href="/" data-back-desktop>← Back to Desktop</a>
+        <div class="p-sep" id="pSepBack"></div>
+      </>
+    )}
+
     <!-- Taskbar Window Buttons -->
     <div class="tasks" id="tasks">
       {!isDesktop && <span class="task on">{taskName}</span>}
@@ -90,10 +97,8 @@ const pageTitle = title === 'Lucas Oskorep' ? 'Lucas Oskorep' : `${title} — Lu
 
     <!-- Controls & Clock -->
     <div class="top-right">
-      {isDesktop ? (
+      {isDesktop && (
         <button class="p-btn" id="btnArrange" type="button">⊞ Arrange Windows</button>
-      ) : (
-        <a class="p-btn" href="/" data-back-desktop>← Back to Desktop</a>
       )}
       <div class="clock mono" id="clock">12:00</div>
     </div>

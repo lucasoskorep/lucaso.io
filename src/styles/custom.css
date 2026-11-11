@@ -389,6 +389,7 @@ td.code .highlight { border: 1px solid var(--gtk-hi); padding: .75rem .9rem; }
   .ws-pager,
   #wsSep,
   #pSepStart,
+  #pSepBack,
   .tasks,
   #tasks,
   .rz,
