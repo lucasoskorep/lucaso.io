@@ -1,6 +1,7 @@
 Title: Valve Index Lens Holder
 Date: 2022-04-11
 Category: models
+Status: hidden
 Image: 
 Tags: mobile, dev, holder
 License: GPLv3

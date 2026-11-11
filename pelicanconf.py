@@ -9,7 +9,7 @@ TIMEZONE = 'America/New_York'
 DEFAULT_LANG = 'en'
 
 # Theme settings
-THEME = './pelican-hyde'
+THEME = './theme'
 DISPLAY_PAGES_ON_MENU = True
 BIO = ('Software Engineer')
 

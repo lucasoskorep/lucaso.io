@@ -17,33 +17,6 @@
     recipes: "(Secret...Recipes)"
   };
 
-  const RECIPES = {
-    pizza: {
-      title: "Cast-Iron Pan Pizza",
-      meta: "Prep: 15m (+ overnight proof) · Bake: 14m @ 500°F · Cast-Iron Skillet",
-      ing: "Dough: 260g bread flour, 190g warm water (73%), 5g salt, 3g instant yeast, 1 tbsp olive oil · Toppings: 140g low-moisture mozzarella (cubed to the rim), 1/2 cup crushed San Marzano tomatoes, oregano, garlic, basil.",
-      body: "1. Whisk flour, salt, yeast, and water in a bowl until no dry flour remains; coat in olive oil, cover, and ferment overnight. 2. Two hours before dinner, oil a 10\" cast-iron skillet generously and stretch the dough toward the edges. 3. Spread uncooked crushed tomatoes right to the rim and scatter mozzarella cubes directly against the iron wall for a lacy frico crust. 4. Bake at 500°F on the bottom rack for 12–14 minutes, then finish 60 seconds on the stovetop burner until the bottom is deeply golden and crisp."
-    },
-    noodles: {
-      title: "15-Minute Garlic Chili Crisp Noodles",
-      meta: "Prep: 5m · Cook: 10m · High-Heat Wok / Skillet",
-      ing: "200g wide hand-pulled wheat noodles · 4 cloves garlic (finely minced) · 2 scallions · 1.5 tbsp chili crisp · 1.5 tbsp light soy sauce · 1 tbsp Chinkiang black vinegar · 1 tsp toasted sesame oil · 1/2 tsp sugar.",
-      body: "1. In a heatproof bowl, pile minced garlic, scallion whites, chili crisp, soy sauce, black vinegar, and sugar. 2. Boil wide noodles until chewy; reserve 2 tbsp starchy cooking water. 3. Heat 2 tbsp neutral oil until lightly smoking and pour directly over the raw garlic pile so it sizzles and blooms instantly. 4. Toss drained noodles + splash of noodle water vigorously in the bowl until glossy, then top with scallion greens and toasted sesame seeds."
-    },
-    bolognese: {
-      title: "Slow-Simmered Sunday Bolognese",
-      meta: "Prep: 25m · Simmer: 3.5h · Heavy Dutch Oven",
-      ing: "500g ground chuck (80/20) · 250g ground pork · 1 onion, 1 carrot, 1 celery stalk (finely diced soffritto) · 3 tbsp tomato paste · 150ml dry white wine · 200ml whole milk · 400ml beef stock · Parmigiano rind.",
-      body: "1. Sweat the finely minced soffritto in olive oil and butter over medium-low heat for 12 minutes until soft and sweet. 2. Add beef and pork, letting the meat brown deeply before caramelizing the tomato paste in the center of the pot. 3. Deglaze with dry white wine and cook until nearly dry, then stir in warm whole milk and let it simmer down to tenderize the meat. 4. Add stock and a Parmigiano rind; simmer uncovered on the lowest flame for 3+ hours, stirring occasionally until thick, rich, and velvety."
-    },
-    cookies: {
-      title: "Brown Butter Dark Chocolate Cookies",
-      meta: "Prep: 20m · Chill: 24h · Bake: 11m @ 350°F",
-      ing: "225g unsalted butter (browned) · 200g dark brown sugar · 75g white sugar · 2 cold eggs · 280g all-purpose flour · 1 tsp baking soda · 220g hand-chopped 70% dark chocolate bar · Flaky Maldon sea salt.",
-      body: "1. Melt butter in a steel pan over medium heat, swirling until foaming subsides and nutty toasted milk solids coat the bottom; cool 15 minutes. 2. Whisk brown butter with both sugars and eggs until glossy and ribbon-thick. 3. Fold in flour, baking soda, and hand-chopped dark chocolate (including the chocolate dust so it marbles the dough). 4. Scoop 75g balls, chill 24 hours for deep butterscotch flavor, bake 11 minutes at 350°F, and finish with flaky sea salt."
-    }
-  };
-
   /* Clock & Start Menu */
   const clock = document.getElementById("clock");
   function updateClock() {
@@ -420,6 +393,7 @@
   });
 
   /* Recipe rows inside (Secret...Recipes) */
+  const recipesBody = document.getElementById("recipesBody");
   const recipesListWrap = document.getElementById("recipesListWrap");
   const recipeDetailWrap = document.getElementById("recipeDetailWrap");
   const recipeResetBtn = document.getElementById("recipeResetBtn");
@@ -427,26 +401,34 @@
   function showRecipeList() {
     if (recipesListWrap) recipesListWrap.style.display = "";
     if (recipeDetailWrap) recipeDetailWrap.style.display = "none";
+    if (recipesBody) recipesBody.scrollTop = 0;
   }
+
   if (recipeResetBtn) recipeResetBtn.onclick = showRecipeList;
+
+  document.querySelectorAll("[data-recipe-back]").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      showRecipeList();
+    });
+  });
 
   document.querySelectorAll("[data-recipe]").forEach(function (el) {
     el.addEventListener("click", function (e) {
       e.preventDefault();
-      const r = RECIPES[el.getAttribute("data-recipe")];
-      if (!r || !recipeDetailWrap || !recipesListWrap) return;
+      const slug = el.getAttribute("data-recipe");
+      if (!slug || !recipeDetailWrap || !recipesListWrap) return;
+      const cards = recipeDetailWrap.querySelectorAll("[data-recipe-detail]");
+      let found = false;
+      cards.forEach(function (card) {
+        const match = card.getAttribute("data-recipe-detail") === slug;
+        card.style.display = match ? "" : "none";
+        if (match) found = true;
+      });
+      if (!found) return;
       recipesListWrap.style.display = "none";
       recipeDetailWrap.style.display = "";
-      recipeDetailWrap.innerHTML =
-        '<div class="r-box">' +
-        '<h4>' + r.title + '</h4>' +
-        '<div class="r-meta">' + r.meta + '</div>' +
-        '<div class="r-ing"><b>Ingredients:</b> ' + r.ing + '</div>' +
-        '<p>' + r.body + '</p>' +
-        '<button class="p-btn" id="backToRecipesBtn">← All Recipes</button>' +
-        '</div>';
-      const backBtn = document.getElementById("backToRecipesBtn");
-      if (backBtn) backBtn.onclick = showRecipeList;
+      if (recipesBody) recipesBody.scrollTop = 0;
     });
   });
 

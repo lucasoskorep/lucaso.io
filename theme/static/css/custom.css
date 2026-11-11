@@ -256,11 +256,28 @@ pre.term .c { animation: blink 1s steps(1) infinite; }
 
 /* Recipe Card inside Viewer */
 .r-box { background: var(--client-alt); box-shadow: var(--bevel-in); padding: 12px 14px; }
+.r-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 10px; padding-bottom: 8px; margin-bottom: 10px;
+  border-bottom: 1px solid var(--gtk-hi);
+}
+.r-actions { display: flex; gap: 5px; flex-shrink: 0; }
 .r-box h4 { color: var(--accent); font-size: 14px; margin-bottom: 4px; }
-.r-meta { font-size: 11px; color: var(--dim); margin-bottom: 8px; }
-.r-ing {
-  background: #101520; border-left: 3px solid var(--accent);
-  padding: 6px 10px; font-size: 11.5px; margin-bottom: 8px; color: var(--ink);
+.r-meta { font-size: 11px; color: var(--dim); }
+.r-prose { font-size: 12px; line-height: 1.62; }
+.r-prose h3 {
+  font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--accent); margin: 12px 0 6px; padding-bottom: 3px;
+  border-bottom: 1px dotted #283142;
+}
+.r-prose h4 { font-size: 12px; color: #ffff55; margin: 8px 0 4px; }
+.r-prose p, .r-prose li { font-size: 12px; line-height: 1.58; }
+.r-prose ul, .r-prose ol { margin: 6px 0 10px; padding-left: 1.35rem; }
+.r-prose img { max-height: 280px; display: block; margin: 8px 0; }
+.r-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-top: 12px; padding-top: 8px;
+  border-top: 1px solid var(--gtk-hi);
 }
 
 /* ---- Top Panel Foot Button, Tasks & Dropdown Menu ---- */

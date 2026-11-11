@@ -1,6 +1,7 @@
 Title: Prusa Lak Spool Holder
 Date: 2023/10/12
 Category: models
+Status: hidden
 Image: 
 Tags: mobile, dev, holder
 License: GPLv3
